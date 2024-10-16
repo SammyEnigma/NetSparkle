@@ -964,7 +964,7 @@ namespace NetSparkleUpdater
             LogWriter?.PrintMessage("Preparing to download {0}", item.DownloadLink ?? "[No download link available]");
             _itemBeingDownloaded = item;
             _downloadTempFileName = await GetDownloadPathForAppCastItem(item);
-            if (_downloadTempFileName == null)
+            if (_downloadTempFileName == null || string.IsNullOrWhiteSpace(_downloadTempFileName))
             {
                 LogWriter?.PrintMessage("Unable to generate download temp file name; was the app cast set up properly with a download link?");
                 return;
