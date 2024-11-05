@@ -2,7 +2,7 @@
 
 ### Summary of 3.x Changes
 
-* Updated .NET and .NET Framework compatibility
+* Updated .NET and .NET Framework compatibility (Bump minimum requirement to .NET 4.6.2, Add .NET 9)
 * Built-in JSON app cast reading/writing instead of just XML
 * Built-in ability to use different channels for your apps (e.g. beta, alpha, preview)
 * Semver compatibility
