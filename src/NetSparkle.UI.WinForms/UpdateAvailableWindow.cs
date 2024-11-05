@@ -8,6 +8,7 @@ using System.Threading;
 using System.Collections.Generic;
 using NetSparkleUpdater.Events;
 using NetSparkleUpdater.AppCastHandlers;
+using System.ComponentModel;
 
 namespace NetSparkleUpdater.UI.WinForms
 {
@@ -40,6 +41,7 @@ namespace NetSparkleUpdater.UI.WinForms
         /// <summary>
         /// Object responsible for downloading and formatting markdown release notes for display in HTML
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public ReleaseNotesGrabber? ReleaseNotesGrabber { get; set; }
 
         private ISignatureVerifier? _signatureVerifier;
