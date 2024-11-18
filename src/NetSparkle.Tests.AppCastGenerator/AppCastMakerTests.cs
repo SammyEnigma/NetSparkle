@@ -1413,7 +1413,7 @@ namespace NetSparkle.Tests.AppCastGenerator
             // setup test dir
             var tempDir = GetCleanTempDir();
             // create dummy files
-            var dummyFilePath = Path.Combine(tempDir, "hello 1.0.txt");
+            var dummyFilePath = Path.Combine(tempDir, "hello 1.0.0-beta1.txt");
             const int fileSizeBytes = 57;
             var tempData = RandomString(fileSizeBytes);
             File.WriteAllText(dummyFilePath, tempData);
@@ -1431,14 +1431,14 @@ namespace NetSparkle.Tests.AppCastGenerator
         <description>Most recent changes with links to updates.</description>
         <language>en</language>
         <item>
-            <title>Version 1.0 Alpha 1</title>
+            <title>Version 1.0 Beta 1</title>
             <sparkle:releaseNotesLink>
             https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md
             </sparkle:releaseNotesLink>
             <pubDate>Fri, 28 Oct 2016 10:30:00 +0000</pubDate>
             <enclosure url=""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe""
-                       sparkle:version=""1.0""
-                       sparkle:shortVersionString=""1.0""
+                       sparkle:version=""1.0.0-beta1""
+                       sparkle:shortVersionString=""1.0.0""
                        sparkle:os=""windows""
                        length=""2337""
                        type=""application/octet-stream""
@@ -1462,8 +1462,8 @@ namespace NetSparkle.Tests.AppCastGenerator
                             ""release_notes_link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md"",
                             ""publication_date"": ""2016-10-28T10:30:00"",
                             ""url"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe"",
-                            ""version"": ""1.0"",
-                            ""short_version"": ""1.0"",
+                            ""version"": ""1.0.0-beta1"",
+                            ""short_version"": ""1.0.0"",
                             ""os"": ""windows"",
                             ""size"": 1337,
                             ""type"": ""application/octet-stream"",
@@ -1474,7 +1474,7 @@ namespace NetSparkle.Tests.AppCastGenerator
             }
             var fakeAppCastFilePath = Path.Combine(tempDir, Guid.NewGuid().ToString() + (appCastMakerType == AppCastMakerType.Xml ? ".xml" : ".json"));
             File.WriteAllText(fakeAppCastFilePath, appCastData);
-            var dummyChangelogFilePath = Path.Combine(tempDir, "change_log_1.0.md");
+            var dummyChangelogFilePath = Path.Combine(tempDir, "change_log_1.0.0-beta1.md");
             tempData = RandomString(fileSizeBytes);
             File.WriteAllText(dummyChangelogFilePath, tempData);
             var opts = new Options()
@@ -1505,7 +1505,8 @@ namespace NetSparkle.Tests.AppCastGenerator
                     : new JsonAppCastMaker(signatureManager, opts);
                 var (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, fakeAppCastFilePath);
                 Assert.Single(items);
-                Assert.EndsWith("change_log_1.0.md", items[0].ReleaseNotesLink);
+                Console.WriteLine(items[0].ReleaseNotesLink);
+                Assert.EndsWith("change_log_1.0.0-beta1.md", items[0].ReleaseNotesLink);
             }
             finally
             {
