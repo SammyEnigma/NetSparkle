@@ -93,7 +93,7 @@ We are open to contributions that might make the overall install/update process 
 
 0. If you want a pre-built UI, install one of the UI NuGet packages. If not, install the core NuGet package.
 1. Set up your project file as mentioned in the following section
-2. Download the app cast generator CLI tool (requires .NET 6, 7, or 8 runtime): `dotnet tool install --global NetSparkleUpdater.Tools.AppCastGenerator`
+2. Download the app cast generator CLI tool (requires .NET 6, 7, 8, or 9 runtime): `dotnet tool install --global NetSparkleUpdater.Tools.AppCastGenerator`
 3. Create your ed25519 keys (save the generated keys somewhere for safe keeping!):
 ```bash
 netsparkle-generate-appcast --generate-keys
@@ -233,13 +233,14 @@ The file that launches your downloaded update executable only waits for 90 secon
   * Subclassing `JSONConfiguration` lets you quickly change the file path where data is saved via `GetSavePath`
 * Subclass `AppCastHelper` if you want full control over the app cast downloading and parsing process. Note that you can probably do everything you need to do via the `AppCastHelper` properties (including `IAppCastFilter AppCastFilter`), but subclassing will give you full, absolute control over the whole process. To use the instance of your class, set `SparkleUpdater.AppCastHelper`.
 * Subclass `ReleaseNotesGrabber` to control the release notes downloading (and therefore display) process. To use an instance of your class, set `UIFactory.ReleaseNotesGrabberOverride`.
-* Override `WebFileDownloader` if you don't want to implement `IUpdateDownloader` yourself and just want to override a function or two such as `CreateHttpClient`. To use an instance of your class, set `SparkleUpdater.UpdateDownloader`.
+* Override `WebFileDownloader` if you don't want to implement `IUpdateDownloader` yourself and just want to override a function or two such as `CreateHttpClient` or `RetreiveDestinationFileNameAsync`. To use an instance of your class, set `SparkleUpdater.UpdateDownloader`.
 * Override `WebRequestAppCastDataDownloader` if you don't want to implement `IAppCastDataDownloader` and just want to override a function or two such as `CreateHttpClient`. To use an instance of your class, set `SparkleUpdater.AppCastDataDownloader`.
 * Override `LogWriter` to implement the `PrintMessage` function; because `ILogger` is a pretty simple interface, you can probably just implement that interface yourself if your needs are complex. To use an instance of your class, set `SparkleUpdater.LogWriter`.
 * Override `SparkleUpdater` to implement some different installation-related functions, including:
   * `GetWindowsInstallerCommand`
   * `GetInstallerCommand`
   * `RunDownloadedInstaller`
+  * `GetDownloadPathForAppCastItem`
 * Override `UIFactory` if you don't want to implement the entirety of the `IUIFactory` interface yourself and just want to configure a function or two. To use an instance of your class, set `SparkleUpdater.UIFactory`.
 
 #### Using `IAppCastFilter`
@@ -270,7 +271,7 @@ We strongly recommend that you make use of the [netsparkle-generate-appcast](#in
 
 ### Install AppCast Generator Tool
 
-1. This tool requires the .NET 6, 7, or 8 Desktop Runtime to be installed.
+1. This tool requires the .NET 6, 7, 8, or 9 Desktop Runtime to be installed.
 2. `dotnet tool install --global NetSparkleUpdater.Tools.AppCastGenerator`
 3. The tool is now available on your command line as the `netsparkle-generate-appcast` command. You can use `netsparkle-generate-appcast --help` to see a full list of options for this tool.
 
@@ -344,7 +345,7 @@ _Note:_ the app cast generator tool creates both of these signatures for you whe
 
 ### Ed25519 Signatures
 
-You can generate Ed25519 signatures using the `AppCastGenerator` tool (from [this NuGet package](https://www.nuget.org/packages/NetSparkleUpdater.Tools.AppCastGenerator/) or in the [source code here](https://github.com/NetSparkleUpdater/NetSparkle/tree/develop/src/NetSparkle.Tools.AppCastGenerator)). **This tool requires the .NET 6, 7, or 8 Desktop Runtime to be installed.** Please see below sections for options and examples on generating the Ed25519 keys and for using them when creating an app cast.
+You can generate Ed25519 signatures using the `AppCastGenerator` tool (from [this NuGet package](https://www.nuget.org/packages/NetSparkleUpdater.Tools.AppCastGenerator/) or in the [source code here](https://github.com/NetSparkleUpdater/NetSparkle/tree/develop/src/NetSparkle.Tools.AppCastGenerator)). **This tool requires the .NET 6, 7, 8, or 9 Desktop Runtime to be installed.** Please see below sections for options and examples on generating the Ed25519 keys and for using them when creating an app cast.
 
 ### How can I make the app cast?
 

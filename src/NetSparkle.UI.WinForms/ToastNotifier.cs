@@ -1,6 +1,7 @@
 using NetSparkleUpdater.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -49,6 +50,7 @@ namespace NetSparkleUpdater.UI.WinForms
         /// <summary>
         /// Action to perform when the user clicks on the toast window
         /// </summary>
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
         public Action ClickAction { get; set; }
 
         private void PauseTimerTick(object? sender, EventArgs e)

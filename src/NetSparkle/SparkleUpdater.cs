@@ -14,7 +14,7 @@ using NetSparkleUpdater.Configurations;
 using NetSparkleUpdater.AppCastHandlers;
 using NetSparkleUpdater.AssemblyAccessors;
 using System.Text;
-#if NETSTANDARD || NET6 || NET7 || NET8
+#if NETSTANDARD || NET6 || NET7 || NET8 || NET9
 using System.Runtime.InteropServices;
 #endif
 
@@ -58,6 +58,7 @@ namespace NetSparkleUpdater
         private readonly EventWaitHandle _loopingHandle;
         private TimeSpan _checkFrequency;
         private string? _tmpDownloadFilePath;
+        private string? _tmpDownloadFileNameWithExtension;
         private string? _downloadTempFileName;
         private AppCastItem? _itemBeingDownloaded;
         private bool _hasAttemptedFileRedownload;
@@ -149,11 +150,19 @@ namespace NetSparkleUpdater
 
         #region Properties
 
+#if NETSTANDARD || NET6 || NET7 || NET8
         /// <summary>
         /// The security protocol used by NetSparkle. Setting this property will also set this 
-        /// for the current AppDomain of the caller. Needs to be set to 
-        /// SecurityProtocolType.Tls12 for some cases (such as when downloading from GitHub).
+        /// for the current AppDomain of the caller. May need to be set to 
+        /// SecurityProtocolType.Tls12 for some cases (such as when downloading from GitHub);
+        /// however, if your app is using a more recent version of .NET, you should be OK.
+        /// See also: https://stackoverflow.com/a/59398678/3938401
+        /// .NET 9 -> ServicePointManager is deprecated
         /// </summary>
+        [Obsolete("Deprecated in .NET 9; this property may be removed at any time " + 
+            "(including minor/patch updates to this library); override pertinent " + 
+            "functions (e.g. to HttpClient) in WebRequestAppCastDataDownloader or " + 
+            "similar to make equivalent changes to your application")]
         public SecurityProtocolType SecurityProtocolType
         {
             get
@@ -165,6 +174,7 @@ namespace NetSparkleUpdater
                 ServicePointManager.SecurityProtocol = value;
             }
         }
+#endif
 
         /// <summary>
         /// Set the user interaction mode for Sparkle to use when there is a valid update for the software
@@ -174,12 +184,30 @@ namespace NetSparkleUpdater
         /// <summary>
         /// If set, downloads files to this path. If the folder doesn't already exist, creates
         /// the folder at download time (and not before). 
-        /// Note that this variable is a path, not a full file name.
+        /// Note that this variable is a path, NOT a full file name.
+        /// By default, the file name is grabbed from the server and/or download link.
+        /// You can use <seealso cref="TmpDownloadFileNameWithExtension"/> to control
+        /// the actual file name (NOT path) if you wish.
         /// </summary>
         public string? TmpDownloadFilePath
         {
             get { return _tmpDownloadFilePath; }
             set { _tmpDownloadFilePath = value?.Trim(); }
+        }
+
+        /// <summary>
+        /// If set, downloads files to this file name. Note that this variable is a file name, not a path,
+        /// and it should not be treated as a path. Use <seealso cref="TmpDownloadFilePath"/> to control
+        /// the download path.
+        /// If set, overrides any file name / extension grabbing from the server.
+        /// You probably want to set this manually before the item is downloaded to have some
+        /// unique filename + extension based on the item that's going to be downloaded, or a UUID
+        /// with extension, or similar.
+        /// </summary>
+        public string? TmpDownloadFileNameWithExtension
+        {
+            get { return _tmpDownloadFileNameWithExtension; }
+            set { _tmpDownloadFileNameWithExtension = value?.Trim(); }
         }
 
         /// <summary>
@@ -246,7 +274,7 @@ namespace NetSparkleUpdater
             {
                 if (_configuration == null)
                 {
-#if NETSTANDARD || NET6 || NET7 || NET8
+#if NETSTANDARD || NET6 || NET7 || NET8 || NET9
                         if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                         {
                             _configuration = new RegistryConfiguration(new AssemblyDiagnosticsAccessor(_appReferenceAssembly));
@@ -828,22 +856,26 @@ namespace NetSparkleUpdater
         /// <param name="item">The item that you want to generate a download path for</param>
         /// <returns>The download path for an app cast item if item is not null and has valid download link
         /// Otherwise returns null.</returns>
-        public async Task<string?> GetDownloadPathForAppCastItem(AppCastItem item)
+        public virtual async Task<string?> GetDownloadPathForAppCastItem(AppCastItem item)
         {
             if (item.DownloadLink != null)
             {
-                string? filename = string.Empty;
+                string? filename = string.IsNullOrWhiteSpace(TmpDownloadFileNameWithExtension) 
+                    ? string.Empty 
+                    : TmpDownloadFileNameWithExtension;
 
                 // default to using the server's file name as the download file name
                 if (UpdateDownloader is WebFileDownloader webFileDownloader)
                 {
                     webFileDownloader.PrepareToDownloadFile(); // reset download operations
                 }
-                if (CheckServerFileName && UpdateDownloader != null)
+                if (string.IsNullOrWhiteSpace(filename) && CheckServerFileName && 
+                    UpdateDownloader != null)
                 {
                     try
                     {
                         filename = await UpdateDownloader.RetrieveDestinationFileNameAsync(item);
+                        LogWriter?.PrintMessage("Attempting to get download file name from server. This is what we got: {0} (is it null or whitespace? {1})", filename ?? "", string.IsNullOrWhiteSpace(filename));
                     }
                     catch (Exception)
                     {
@@ -857,6 +889,7 @@ namespace NetSparkleUpdater
                     try
                     {
                         filename = Path.GetFileName(new Uri(item.DownloadLink).LocalPath);
+                        LogWriter?.PrintMessage("Attempting to get download file name based on link. This is what we got: {0} (is it null or whitespace? {1})", filename, string.IsNullOrWhiteSpace(filename));
                     }
                     catch (UriFormatException)
                     {
@@ -931,7 +964,7 @@ namespace NetSparkleUpdater
             LogWriter?.PrintMessage("Preparing to download {0}", item.DownloadLink ?? "[No download link available]");
             _itemBeingDownloaded = item;
             _downloadTempFileName = await GetDownloadPathForAppCastItem(item);
-            if (_downloadTempFileName == null)
+            if (_downloadTempFileName == null || string.IsNullOrWhiteSpace(_downloadTempFileName))
             {
                 LogWriter?.PrintMessage("Unable to generate download temp file name; was the app cast set up properly with a download link?");
                 return;

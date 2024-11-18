@@ -2,7 +2,7 @@
 
 ### Summary of 3.x Changes
 
-* Updated .NET and .NET Framework compatibility
+* Updated .NET and .NET Framework compatibility (Bump minimum requirement to .NET 4.6.2, Add .NET 9)
 * Built-in JSON app cast reading/writing instead of just XML
 * Built-in ability to use different channels for your apps (e.g. beta, alpha, preview)
 * Semver compatibility
@@ -137,6 +137,10 @@
 * Add `TrustEverySSLConnection` to .NET Core `WebFileDownloader`
 * Fix `WebFileDownloader` not setting up an `HttpClientHandler` (was always auto-redirect'ing before despite setting `RedirectHandler`; now behaves more similarly to `WebRequestAppCastDataDownloader`)
 * Fixed `Unsafe` mode in DSA/ed25519 checkers still checking signatures if a signature existed
+* Deprecated `SecurityProtocolType SecurityProtocolType` property in `SparkleUpdater` (deprecated in .NET 9 and you can easily override the pertinent `HttpClient` behavior yourself)
+* `SparkleUpdater.GetDownloadPathForAppCastItem` is now marked `virtual`
+* Added `TmpDownloadFileNameWithExtension` for controlling the download file name (use `TmpDownloadFilePath` to control the download file path)
+* `WebFileDownloader.RetrieveDestinationFileNameAsync` is now marked `virtual`
 
 ## Updating from 0.X or 1.X to 2.X
 
