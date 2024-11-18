@@ -532,7 +532,7 @@ namespace NetSparkleUpdater.AppCastGenerator
                     }
                     var semVerLikeVersion = SemVerLike.Parse(productVersion);
 
-                    var itemFoundInAppcast = items.Where(x => x.SemVerLikeVersion != null && x.SemVerLikeVersion == semVerLikeVersion).FirstOrDefault();
+                    var itemFoundInAppcast = items.Where(x => x.SemVerLikeVersion != null && x.SemVerLikeVersion.Equals(semVerLikeVersion)).FirstOrDefault();
                     if (itemFoundInAppcast != null && _opts.OverwriteOldItemsInAppcast)
                     {
                         Console.WriteLine($"Removing existing app cast item with version {semVerLikeVersion} so we can add the version on disk to the app cast...");

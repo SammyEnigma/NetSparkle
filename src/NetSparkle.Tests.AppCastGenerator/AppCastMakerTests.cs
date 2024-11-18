@@ -1390,11 +1390,120 @@ namespace NetSparkle.Tests.AppCastGenerator
                 var signatureManager = _fixture.GetSignatureManager();
                 Assert.True(signatureManager.KeysExist());
 
-                AppCastMaker maker = appCastMakerType == AppCastMakerType.Xml 
+                AppCastMaker maker = appCastMakerType == AppCastMakerType.Xml
                     ? new XMLAppCastMaker(signatureManager, opts)
                     : new JsonAppCastMaker(signatureManager, opts);
                 var appCastFileName = maker.GetPathToAppCastOutput(opts.OutputDirectory, opts.SourceBinaryDirectory);
                 var (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, appCastFileName);
+                Assert.Single(items);
+                Assert.EndsWith("change_log_1.0.md", items[0].ReleaseNotesLink);
+            }
+            finally
+            {
+                // make sure tempDir always cleaned up
+                CleanUpDir(tempDir);
+            }
+        }
+
+        [Theory]
+        [InlineData(AppCastMakerType.Xml)]
+        [InlineData(AppCastMakerType.Json)]
+        public void OverwriteExistingEntry(AppCastMakerType appCastMakerType)
+        {
+            // setup test dir
+            var tempDir = GetCleanTempDir();
+            // create dummy files
+            var dummyFilePath = Path.Combine(tempDir, "hello 1.0.txt");
+            const int fileSizeBytes = 57;
+            var tempData = RandomString(fileSizeBytes);
+            File.WriteAllText(dummyFilePath, tempData);
+
+            var appCastData = @"";
+            // now create something with some actual data!
+            if (appCastMakerType == AppCastMakerType.Xml)
+            {
+                appCastData = @"
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<rss xmlns:dc=""http://purl.org/dc/elements/1.1/"" xmlns:sparkle=""http://www.andymatuschak.org/xml-namespaces/sparkle"" version=""2.0"">
+    <channel>
+        <title>NetSparkle Test App</title>
+        <link>https://netsparkleupdater.github.io/NetSparkle/files/sample-app/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 1.0 Alpha 1</title>
+            <sparkle:releaseNotesLink>
+            https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md
+            </sparkle:releaseNotesLink>
+            <pubDate>Fri, 28 Oct 2016 10:30:00 +0000</pubDate>
+            <enclosure url=""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe""
+                       sparkle:version=""1.0""
+                       sparkle:shortVersionString=""1.0""
+                       sparkle:os=""windows""
+                       length=""2337""
+                       type=""application/octet-stream""
+                       sparkle:signature=""bar"" />
+        </item>
+    </channel>
+</rss>
+".Trim();
+            }
+            else
+            {
+                appCastData = @"
+                {
+                    ""title"": ""NetSparkle Test App"",
+                    ""langauge"": ""en"",
+                    ""description"": ""Most recent changes with links to updates."",
+                    ""link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/appcast.json"",
+                    ""items"": [
+                        {
+                            ""title"": ""Version 1.0 Beta 1"",
+                            ""release_notes_link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md"",
+                            ""publication_date"": ""2016-10-28T10:30:00"",
+                            ""url"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe"",
+                            ""version"": ""1.0"",
+                            ""short_version"": ""1.0"",
+                            ""os"": ""windows"",
+                            ""size"": 1337,
+                            ""type"": ""application/octet-stream"",
+                            ""signature"": ""foo""
+                        }
+                    ]
+                }".Trim();
+            }
+            var fakeAppCastFilePath = Path.Combine(tempDir, Guid.NewGuid().ToString() + (appCastMakerType == AppCastMakerType.Xml ? ".xml" : ".json"));
+            File.WriteAllText(fakeAppCastFilePath, appCastData);
+            var dummyChangelogFilePath = Path.Combine(tempDir, "change_log_1.0.md");
+            tempData = RandomString(fileSizeBytes);
+            File.WriteAllText(dummyChangelogFilePath, tempData);
+            var opts = new Options()
+            {
+                FileExtractVersion = true,
+                SearchBinarySubDirectories = true,
+                SourceBinaryDirectory = tempDir,
+                ChangeLogPath = tempDir,
+                Extensions = "txt",
+                OutputDirectory = tempDir,
+                OperatingSystem = "windows",
+                ProductName = "ProductName",
+                BaseUrl = "https://example.com/downloads",
+                ChangeLogUrl = "http://baseURL/appname/changelogs/",
+                ChangeLogFileNamePrefix = "change_log_",
+                OverwriteOldItemsInAppcast = true,
+                ReparseExistingAppCast = true,
+                HumanReadableOutput = true
+            };
+
+            try
+            {
+                var signatureManager = _fixture.GetSignatureManager();
+                Assert.True(signatureManager.KeysExist());
+
+                AppCastMaker maker = appCastMakerType == AppCastMakerType.Xml
+                    ? new XMLAppCastMaker(signatureManager, opts)
+                    : new JsonAppCastMaker(signatureManager, opts);
+                var (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, fakeAppCastFilePath);
                 Assert.Single(items);
                 Assert.EndsWith("change_log_1.0.md", items[0].ReleaseNotesLink);
             }
