@@ -99,11 +99,11 @@ namespace NetSparkleUpdater.AppCastGenerator
 
         [Option("overwrite-old-items", SetName = "local", Required = false, HelpText =
             "If--overwrite-old-items is used, this option will cause app cast " +
-            "items to be rewritten in the app cast if the a binary on disk with the same version number is found. " +
+            "items to be rewritten in the app cast if a binary on disk with the same version number is found. " +
             "In other words, if 1.0.1 is in the app cast already (either from reparsing or from another binary), " +
             "and another 1.0.1 is found on disk, then the 1.0.1 data in the app cast will be rewritten based on the binary found. " +
             "Note that this means that if you have multiple 1.0.1 versions on disk (which you shouldn't do...), the last one found " +
-            "will be the one in your app cast!", Default = false)]
+            "will be the one in your app cast! (Uses semantic versions to check for matches.)", Default = false)]
         public bool OverwriteOldItemsInAppcast { get; set; }
 
         [Option("human-readable", SetName = "local", Required = false, Default = false,
