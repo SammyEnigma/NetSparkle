@@ -76,7 +76,7 @@
 * `ReleaseNotesGrabber` uses the `AppCastItem.Title` property now, which by default includes version when creating via the app cast generator, for display of a release's title instead of just the `Version` property
 * Major UI usage refactoring:
   * `ShowsUIOnMainThread` is gone and will not come back. It never really worked as intended and was just confusing. If you want to do fancy things with threads, handle `SparkleUpdater` events and handle things in your own way for your own app's needs.
-  * It's highly recommended to NetSparkle on the main thread.
+  * It's highly recommended to start NetSparkle on the main thread.
     * The background loop will use `SyncronizationContext` to post events and callbacks to whatever thread/context started the main `SparkleUpdater` instance, which is why starting things on the main UI thread is recommended.
     * You can still do your own things with threads by handling events instead of passing a built-in `UIFactory` to `SparkleUpdater`, but this does not stop you from using a built-in `UIFactory` implementation to actually create said GUI elements. See the `NetSparkle.Samples.Forms.Multithread` sample.
     * For a sample of running WinForms on multiple UI threads while still using built-in UI objects, see the `NetSparkle.Samples.Forms.Multithread` sample.
