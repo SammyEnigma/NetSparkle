@@ -74,7 +74,7 @@ namespace NetSparkle.Tests.AppCastGenerator
             Assert.Null(AppCastMaker.GetVersionFromName(null));
             Assert.Null(AppCastMaker.GetVersionFromName("foo"));
             Assert.Null(AppCastMaker.GetVersionFromName("foo1."));
-            Assert.Null(AppCastMaker.GetVersionFromName("hello 1.txt")); // New test, 1 is not a valid version, should be atleast Major.Minor
+            Assert.Null(AppCastMaker.GetVersionFromName("hello 1.txt")); // New test, 1 is not a valid version, should be at least Major.Minor
             Assert.Equal("1.0", AppCastMaker.GetVersionFromName("hello 1.0.txt"));
             Assert.Equal("1.0", AppCastMaker.GetVersionFromName("hello 1.0            .txt")); // whitespace shouldn't matter
             Assert.Null(AppCastMaker.GetVersionFromName("hello 1 .0.txt")); // I changed this to null as I think its a more suitable output versus a version of 0
@@ -128,6 +128,7 @@ namespace NetSparkle.Tests.AppCastGenerator
             Assert.Equal("2.0.0+build.1848", AppCastMaker.GetVersionFromName("app 2.0.0+build.1848.txt"));
             Assert.Equal("2.0.1-alpha.1227", AppCastMaker.GetVersionFromName("app 2.0.1-alpha.1227.txt"));
             Assert.Equal("1.0.0-alpha+beta", AppCastMaker.GetVersionFromName("app 1.0.0-alpha+beta.txt"));
+            Assert.Equal("1.0.0-beta1", AppCastMaker.GetVersionFromName("hello 1.0.0-beta1.txt"));
             Assert.Equal("1.2.3----RC-SNAPSHOT.12.9.1--.12+788", AppCastMaker.GetVersionFromName("app 1.2.3----RC-SNAPSHOT.12.9.1--.12+788.txt"));
             Assert.Equal("1.2.3----R-S.12.9.1--.12+meta", AppCastMaker.GetVersionFromName("app 1.2.3----R-S.12.9.1--.12+meta.txt"));
             Assert.Equal("1.2.3----RC-SNAPSHOT.12.9.1--.12", AppCastMaker.GetVersionFromName("app 1.2.3----RC-SNAPSHOT.12.9.1--.12.txt"));
@@ -151,6 +152,7 @@ namespace NetSparkle.Tests.AppCastGenerator
             Assert.Equal("2.10.1", AppCastMaker.GetVersionFromName("-my--app-setup-2.10.1.exe"));
 
             // Invalid semantic versions tests
+            Assert.Null(AppCastMaker.GetVersionFromName("hello 1.0-beta1.txt")); // need Major.Minor.Revision
             Assert.Null(AppCastMaker.GetVersionFromName("app 1.2.3-0123.txt"));
             Assert.Null(AppCastMaker.GetVersionFromName("app 1.2.3-0123.0123.txt"));
             Assert.Null(AppCastMaker.GetVersionFromName("app 1.1.2+.123.txt"));
