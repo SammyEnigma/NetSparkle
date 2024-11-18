@@ -1433,7 +1433,7 @@ namespace NetSparkle.Tests.AppCastGenerator
         <item>
             <title>Version 1.0 Beta 1</title>
             <sparkle:releaseNotesLink>
-            https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md
+            https://netsparkleupdater.github.io/NetSparkle/files/sample-app/1.0-beta-release-notes.md
             </sparkle:releaseNotesLink>
             <pubDate>Fri, 28 Oct 2016 10:30:00 +0000</pubDate>
             <enclosure url=""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe""
@@ -1459,7 +1459,7 @@ namespace NetSparkle.Tests.AppCastGenerator
                     ""items"": [
                         {
                             ""title"": ""Version 1.0 Beta 1"",
-                            ""release_notes_link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.0-release-notes.md"",
+                            ""release_notes_link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/1.0-beta-release-notes.md"",
                             ""publication_date"": ""2016-10-28T10:30:00"",
                             ""url"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe"",
                             ""version"": ""1.0.0-beta1"",
@@ -1505,8 +1505,16 @@ namespace NetSparkle.Tests.AppCastGenerator
                     : new JsonAppCastMaker(signatureManager, opts);
                 var (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, fakeAppCastFilePath);
                 Assert.Single(items);
-                Console.WriteLine(items[0].ReleaseNotesLink);
+                Assert.EndsWith("hello%201.0.0-beta1.txt", items[0].DownloadLink);
                 Assert.EndsWith("change_log_1.0.0-beta1.md", items[0].ReleaseNotesLink);
+
+                // now make sure file isn't overwritten if we don't have the option on
+                opts.OverwriteOldItemsInAppcast = false;
+                (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, fakeAppCastFilePath);
+                Assert.Single(items);
+                Console.WriteLine(items[0].ReleaseNotesLink);
+                Assert.EndsWith("NetSparkleUpdate.exe", items[0].DownloadLink);
+                Assert.EndsWith("1.0-beta-release-notes.md", items[0].ReleaseNotesLink);
             }
             finally
             {
