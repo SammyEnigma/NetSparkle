@@ -120,7 +120,7 @@ _sparkle.StartLoop(true); // will auto-check for updates
 5. Build your project
 6. Create a change log file (markdown format) if needed
 7. Create an installer for your project using tools like `InnoSetup` (Windows), a DMG file (Linux), a .tar.gz file (Linux), or similar. More information in the [how updates work](#how-updates-work) section.
-8. Run the app cast generator (see other portions of this readme or `netsparkle-generate-appcast --help` for options): `netsparkle-generate-appcast -b binary/folder -p change/log/folder -u https://example.com/downloads -p https://example.com/downloads/changelogs`
+8. Run the app cast generator (see other portions of this readme or `netsparkle-generate-appcast --help` for options): `netsparkle-generate-appcast -b binary/folder -p change/log/folder -u https://example.com/downloads -l https://example.com/downloads/changelogs`
 9. Upload your files (including any `.signature` or similar files) to the appropriate locations on your server
 10. Do a test run by rebuilding your project with a temporary software version LOWER than the version you just uploaded. NetSparkle should check for the update, see there's an update, and go through that process for/with you (depending on if you're using a built-in UI, of course).
 11. Things not working? Your first step is to make use of `SparkleUpdater.LogWriter` to see if there is any helpful debug information showing up on the console!
@@ -477,7 +477,7 @@ netsparkle-generate-appcast -a directory/for/appcast/output/ -e exe -b directory
 netsparkle-generate-appcast -b binary/folder -p change/log/folder
 
 # Customize download URL for binaries and change logs
-netsparkle-generate-appcast -b binary/folder -p change/log/folder -u https://example.com/downloads -p https://example.com/downloads/changelogs
+netsparkle-generate-appcast -b binary/folder -p change/log/folder -u https://example.com/downloads -l https://example.com/downloads/changelogs
 
 # Set your application name for the app cast
 netsparkle-generate-appcast -n "My Awesome App" -b binary/folder
