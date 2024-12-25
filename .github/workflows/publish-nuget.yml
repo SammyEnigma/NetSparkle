@@ -14,10 +14,10 @@ jobs:
             os: [windows-latest, macos-latest, ubuntu-latest]
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: nuget/setup-nuget@v2
-        with:
-            nuget-api-key: ${{secrets.NUGET_API_KEY}}
-            nuget-version: '5.x'
+      # - uses: nuget/setup-nuget@v2
+      #   with:
+      #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
+      #       nuget-version: '5.x'
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
@@ -66,10 +66,10 @@ jobs:
     needs: test
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: nuget/setup-nuget@v2
-        with:
-            nuget-api-key: ${{secrets.NUGET_API_KEY}}
-            nuget-version: '5.x'
+      # - uses: nuget/setup-nuget@v2
+      #   with:
+      #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
+      #       nuget-version: '5.x'
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
@@ -113,10 +113,10 @@ jobs:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/avalonia-preview' || github.ref == 'refs/heads/versions/2.x'
     steps:
       - uses: actions/checkout@v4.2.2
-      - uses: nuget/setup-nuget@v2
-        with:
-            nuget-api-key: ${{secrets.NUGET_API_KEY}}
-            nuget-version: '5.x'
+      # - uses: nuget/setup-nuget@v2
+      #   with:
+      #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
+      #       nuget-version: '5.x'
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
