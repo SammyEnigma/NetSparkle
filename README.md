@@ -83,7 +83,7 @@ Right now, NetSparkleUpdater **does not** help you with 1., 2., or 4. "Why not?"
 
 To create your app cast file, see the [app cast](#app-cast) section of this document.
 
-We are open to contributions that might make the overall install/update process easier for the user. Please file an issue first with your idea before starting work so we can talk about it.
+We are open to contributions that could make the overall install/update process easier for the user. For example, adding upload functionality from the app cast generator to an FTP or GitHub release or similar might be a useful feature for some users. Please file an issue first with your idea before starting work so we can talk about it.
 
 ## Basic Usage
 
