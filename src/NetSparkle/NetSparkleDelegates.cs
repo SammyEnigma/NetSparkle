@@ -140,7 +140,7 @@ namespace NetSparkleUpdater
     /// </summary>
     /// <param name="failureReason"><seealso cref="InstallUpdateFailureReason"/> reason for failure</param>
     /// <param name="installPath">Path for installer (can be null)</param>
-    /// <returns>Result is unused; return whatever you like. This will be changed in a future version
-    /// to `void`.</returns>
+    /// <returns>Result is unused; return whatever you like. This was a mistake in the 3.0 release.
+    /// This will be changed in a future version to `void`.</returns>
     public delegate bool InstallUpdateFailure(InstallUpdateFailureReason failureReason, string? installPath);
 }
