@@ -35,7 +35,6 @@ namespace NetSparkle.Samples.Forms.Multithread
                 UIFactory = null // so we can handle threads, which is outside the context of SparkleUpdater's use of UIFactory objects
             };
             // TLS 1.2 required by GitHub (https://developer.github.com/changes/2018-02-01-weak-crypto-removal-notice/)
-            _sparkleUpdateDetector.SecurityProtocolType = System.Net.SecurityProtocolType.Tls12;
             //_sparkleUpdateDetector.CloseApplication += _sparkleUpdateDetector_CloseApplication;
         }
 

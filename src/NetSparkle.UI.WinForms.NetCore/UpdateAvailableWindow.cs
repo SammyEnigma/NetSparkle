@@ -278,7 +278,7 @@ namespace NetSparkleUpdater.UI.WinForms
         /// </summary>
         /// <param name="sender">not used.</param>
         /// <param name="e">not used.</param>
-        private void OnSkipButtonClick(object sender, EventArgs e)
+        private void OnSkipButtonClick(object? sender, EventArgs e)
         {
             // set the dialog result to no
             DialogResult = DialogResult.No;

@@ -29,7 +29,6 @@ namespace NetSparkleUpdater.Samples.Avalonia
                 //UseNotificationToast = false // Avalonia version doesn't yet support notification toast messages
             };
             // TLS 1.2 required by GitHub (https://developer.github.com/changes/2018-02-01-weak-crypto-removal-notice/)
-            _sparkle.SecurityProtocolType = System.Net.SecurityProtocolType.Tls12;
             var dler = new WebRequestAppCastDataDownloader(_sparkle.LogWriter) { TrustEverySSLConnection = true };
             // var fileDler = new WebFileDownloader(_sparkle.LogWriter) { TrustEverySSLConnection = true };
             _sparkle.AppCastDataDownloader = dler;

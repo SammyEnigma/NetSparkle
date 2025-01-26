@@ -108,7 +108,7 @@ namespace NetSparkleUpdater.UI.WinForms
         private void ToastNotifier_Click(object? sender, EventArgs? e)
         {
             DialogResult = DialogResult.Yes;
-            ClickAction.Invoke();
+            ClickAction?.Invoke();
             Close();
         }
 

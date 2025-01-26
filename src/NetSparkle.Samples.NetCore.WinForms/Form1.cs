@@ -28,8 +28,6 @@ namespace NetSparkleUpdater.Samples.NetCore.WinForms
                 //ShowsUIOnMainThread = true,
                 //UseNotificationToast = true
             };
-            // TLS 1.2 required by GitHub (https://developer.github.com/changes/2018-02-01-weak-crypto-removal-notice/)
-            _sparkleUpdateDetector.SecurityProtocolType = System.Net.SecurityProtocolType.Tls12;
             //_sparkleUpdateDetector.CloseApplication += _sparkleUpdateDetector_CloseApplication;
             StartSparkle();
         }

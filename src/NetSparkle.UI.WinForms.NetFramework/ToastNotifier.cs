@@ -1,6 +1,7 @@
 using NetSparkleUpdater.Properties;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -44,12 +45,14 @@ namespace NetSparkleUpdater
                 Icon = applicationIcon;
                 this.Image.Image = Icon.ToBitmap();// new Icon(applicationIcon, new Size(48, 48)).ToBitmap();
             }
+            ClickAction = () => { };
         }
 
         /// <summary>
         /// Action to perform when the user clicks on the toast window
         /// </summary>
-        public Action<List<AppCastItem>>? ClickAction { get; set; }
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+        public Action ClickAction { get; set; }
 
         /// <summary>
         /// List of <seealso cref="AppCastItem"/> updates that the user is being
@@ -112,7 +115,7 @@ namespace NetSparkleUpdater
         private void ToastNotifier_Click(object? sender, EventArgs? e)
         {
             DialogResult = DialogResult.Yes;
-            ClickAction?.Invoke(Updates ?? new List<AppCastItem>());
+            ClickAction?.Invoke();
             Close();
         }
 

@@ -61,8 +61,6 @@ namespace NetSparkleUpdater.Samples.HandleEventsYourself
             {
                 UIFactory = null
             };
-            // TLS 1.2 required by GitHub (https://developer.github.com/changes/2018-02-01-weak-crypto-removal-notice/)
-            _sparkle.SecurityProtocolType = System.Net.SecurityProtocolType.Tls12;
         }
 
         private async void CheckUpdates_Click(object sender, RoutedEventArgs e)
