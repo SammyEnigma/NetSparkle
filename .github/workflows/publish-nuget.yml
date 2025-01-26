@@ -119,10 +119,10 @@ jobs:
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/avalonia-preview' || github.ref == 'refs/heads/versions/2.x'
     steps:
       - uses: actions/checkout@v4.2.2
-      # - uses: nuget/setup-nuget@v2
-      #   with:
-      #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
-      #       nuget-version: '5.x'
+      - uses: nuget/setup-nuget@v2
+        with:
+            nuget-api-key: ${{secrets.NUGET_API_KEY}}
+            nuget-version: '5.x'
 
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
@@ -135,7 +135,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
-        
+      
       - name: Publish NetSparkleUpdater.SparkleUpdater on version change
         uses: nitz/publish-nuget@60fd3adf9d9eecc3bbf8a98738734d3061347172
         with:
@@ -212,11 +212,14 @@ jobs:
           copy ${{ github.workspace }}/README.md ${{ github.workspace }}/nuget\winformsnetframework\README.md
           copy ${{ github.workspace }}/src\NetSparkle\ArtWork\software-update-available.png ${{ github.workspace }}/nuget\winformsnetframework\software-update-available.png
           
+      # uncomment this and add it to following run if nuget/setup-nuget breaks on windows-latest
+      # nuget setApiKey ${{secrets.NUGET_API_KEY}}
+
       - name: Publish NetSparkleUpdater.UI.WinForms.NetFramework
         run: |
           cd ${{ github.workspace }}/nuget/winformsnetframework
           nuget pack NetSparkleUpdater.UI.WinForms.NetFramework.nuspec -verbosity detailed -Symbols -SymbolPackageFormat snupkg
-          nuget push *.nupkg -Source https://www.nuget.org/api/v2/package -SkipDuplicate -verbosity detailed
+          nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -verbosity detailed
           cd ${{ github.workspace }}
 
       - name: Publish NetSparkleUpdater.Tools.DSAHelper
