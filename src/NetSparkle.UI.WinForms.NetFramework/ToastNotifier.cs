@@ -9,7 +9,6 @@ namespace NetSparkleUpdater
 {
     /// <summary>
     /// Like a notification ballon, but more reliable "toast" because it slowly goes up, then down.
-    /// Subscribe to the Click even to know if the user clicked on it.
     /// </summary>
     public partial class ToastNotifier : Form
     {

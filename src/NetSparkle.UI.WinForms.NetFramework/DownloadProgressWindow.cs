@@ -22,17 +22,6 @@ namespace NetSparkleUpdater.UI.WinForms
         private bool _didCallDownloadProcessCompletedHandler = false;
 
         /// <summary>
-        /// Whether or not the software will relaunch after the update has been installed
-        /// </summary>
-        public bool SoftwareWillRelaunchAfterUpdateInstalled
-        {
-            set
-            {
-                btnInstallAndReLaunch.Text = value ? "Install and Relaunch" : "Install";
-            }
-        }
-
-        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="downloadTitle">Title to show to the user (e.g. "Downloading MyApp 1.0...").</param>
