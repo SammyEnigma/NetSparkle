@@ -100,11 +100,13 @@ namespace NetSparkleUpdater.UI.WinForms
                 {
                     btnInstallAndReLaunch.Visible = true;
                     BackColor = Color.FromArgb(240, 240, 240);
+                    lblHeader.Text = "Download Complete";
                 }
                 else
                 {
                     btnInstallAndReLaunch.Visible = false;
                     BackColor = Color.Tomato;
+                    lblHeader.Text = "Download Error";
                 }
             }
         }
