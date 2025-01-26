@@ -9,7 +9,7 @@
     <Product>NetSparkleUpdater.UI.WinForms.NetCore</Product>
     <Copyright>Copyright © 2024</Copyright>
     <OutputPath>..\bin\$(Configuration)\NetSparkle.UI.WinForms\</OutputPath>
-    <!--<PackageId>NetSparkleUpdater.UI.WinForms.NetCore</PackageId>-->
+    <PackageId>NetSparkleUpdater.UI.WinForms.NetCore</PackageId>
     <Version>3.0.1</Version>
     <Authors>Deadpikle</Authors>
     <Company>Deadpikle</Company>
