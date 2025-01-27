@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("ilo",["Interface"],[["ILogger",,[["NetSparkleUpdater.Interfaces",,,,0,"File:NetSparkle/Interfaces/ILogger.cs:NetSparkleUpdater.Interfaces.ILogger","CSharpClass:NetSparkleUpdater.Interfaces.ILogger"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("ilo",["Interface"],[["ILogger",,[["NetSparkleUpdater.Interfaces",,,,0,"File:NetSparkle/Interfaces/ILogger.cs:NetSparkleUpdater.Interfaces.ILogger","CSharpClass:NetSparkleUpdater.Interfaces.ILogger"]]]]);

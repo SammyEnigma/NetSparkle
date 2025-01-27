@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("qui",["Function"],[["QuitApplication",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.QuitApplication","CSharpClass:NetSparkleUpdater.SparkleUpdater:QuitApplication"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("qui",["Function"],[["QuitApplication",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.QuitApplication","CSharpClass:NetSparkleUpdater.SparkleUpdater:QuitApplication"]]]]);

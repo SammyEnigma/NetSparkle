@@ -1,1 +1,1 @@
-NDContentPage.OnToolTipsLoaded({356:"<div class=\"NDToolTip TEnumeration LCSharp\"><div id=\"NDPrototype356\" class=\"NDPrototype NoParameterForm\"><span class=\"SHKeyword\">private enum</span> TokenType</div></div>"});
+﻿NDContentPage.OnToolTipsLoaded({489:"<div class=\"NDToolTip TEnumeration LCSharp\"><div id=\"NDPrototype489\" class=\"NDPrototype\"><div class=\"PSection PPlainSection\"><span class=\"SHKeyword\">private enum</span> TokenType</div></div></div>"});

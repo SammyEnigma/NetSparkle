@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("dsa",["Class"],[["DSAChecker",,[["NetSparkleUpdater.SignatureVerifiers",,,,0,"File:NetSparkle/SignatureVerifiers/DSAChecker.cs:NetSparkleUpdater.SignatureVerifiers.DSAChecker","CSharpClass:NetSparkleUpdater.SignatureVerifiers.DSAChecker"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("dsa",["Class"],[["DSAChecker",,[["NetSparkleUpdater.SignatureVerifiers",,,,0,"File:NetSparkle/SignatureVerifiers/DSAChecker.cs:NetSparkleUpdater.SignatureVerifiers.DSAChecker","CSharpClass:NetSparkleUpdater.SignatureVerifiers.DSAChecker"]]]]);

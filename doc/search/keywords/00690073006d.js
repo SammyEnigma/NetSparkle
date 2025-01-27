@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("ism",["Property"],[["IsMacOSUpdate",,[["NetSparkleUpdater.AppCastItem",,,,0,"File:NetSparkle/AppCastItem.cs:NetSparkleUpdater.AppCastItem.IsMacOSUpdate","CSharpClass:NetSparkleUpdater.AppCastItem:IsMacOSUpdate"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("ism",["Property"],[["IsMacOSUpdate",,[["NetSparkleUpdater.AppCastItem",,,,0,"File:NetSparkle/AppCastItem.cs:NetSparkleUpdater.AppCastItem.IsMacOSUpdate","CSharpClass:NetSparkleUpdater.AppCastItem:IsMacOSUpdate"]]]]);

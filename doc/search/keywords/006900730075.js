@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("isu",["Property"],[["IsUpdateLoopRunning",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.IsUpdateLoopRunning","CSharpClass:NetSparkleUpdater.SparkleUpdater:IsUpdateLoopRunning"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("isu",["Property"],[["IsUpdateLoopRunning",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.IsUpdateLoopRunning","CSharpClass:NetSparkleUpdater.SparkleUpdater:IsUpdateLoopRunning"]]]]);

@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("opt",["Class"],[["Options",,[["NetSparkleUpdater.Tools.AppCastGenerator.Program",,,,0,"File:NetSparkle.Tools.AppCastGenerator/Program.cs:NetSparkleUpdater.Tools.AppCastGenerator.Program.Options","CSharpClass:NetSparkleUpdater.Tools.AppCastGenerator.Program.Options"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("opt",["Class"],[["Options",,[["NetSparkleUpdater.AppCastGenerator",,,,0,"File:NetSparkle.Tools.AppCastGenerator/Options.cs:NetSparkleUpdater.AppCastGenerator.Options","CSharpClass:NetSparkleUpdater.AppCastGenerator.Options"]]]]);

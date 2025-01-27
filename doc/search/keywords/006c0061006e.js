@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("lan",["Property"],[["Language",,[["NetSparkleUpdater.AppCastHandlers.XMLAppCast",,,,0,"File:NetSparkle/AppCastHandlers/XMLAppCast.cs:NetSparkleUpdater.AppCastHandlers.XMLAppCast.Language","CSharpClass:NetSparkleUpdater.AppCastHandlers.XMLAppCast:Language"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("lan",["Property"],[["Language",,[["NetSparkleUpdater.AppCast",,,,0,"File:NetSparkle/AppCast.cs:NetSparkleUpdater.AppCast.Language","CSharpClass:NetSparkleUpdater.AppCast:Language"]]]]);

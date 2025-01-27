@@ -1,1 +1,1 @@
-NDSearch.OnPrefixDataLoaded("~sp",["Function"],[["~SparkleUpdater",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.~SparkleUpdater","CSharpClass:NetSparkleUpdater.SparkleUpdater:~SparkleUpdater"]]]]);
+﻿NDSearch.OnPrefixDataLoaded("~sp",["Function"],[["~SparkleUpdater",,[["NetSparkleUpdater.SparkleUpdater",,,,0,"File:NetSparkle/SparkleUpdater.cs:NetSparkleUpdater.SparkleUpdater.~SparkleUpdater","CSharpClass:NetSparkleUpdater.SparkleUpdater:~SparkleUpdater"]]]]);
