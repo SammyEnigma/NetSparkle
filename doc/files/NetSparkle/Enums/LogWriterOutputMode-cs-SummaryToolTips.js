@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File:NetSparkle/Enums/LogWriterOutputMode.cs",{288:"<div class=\"NDToolTip TEnumeration LCSharp\"><div id=\"NDPrototype288\" class=\"NDPrototype\"><div class=\"PSection PPlainSection\"><span class=\"SHKeyword\">public enum</span> LogWriterOutputMode</div></div><div class=\"TTSummary\">Output mode for the&nbsp; class</div></div>"});

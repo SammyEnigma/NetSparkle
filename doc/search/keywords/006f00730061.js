@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("osa",["Class"],[["OSAppCastFilter",,[["NetSparkleUpdater.Samples.Avalonia",,,,0,"File:NetSparkle.Samples.Avalonia.Rollback/OSAppCastFilter.cs:NetSparkleUpdater.Samples.Avalonia.OSAppCastFilter","CSharpClass:NetSparkleUpdater.Samples.Avalonia.OSAppCastFilter"]]]]);

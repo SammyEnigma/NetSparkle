@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("asy",["Class"],[["AsyncHelper",,[["NetSparkleUpdater.Downloaders",,,,0,"File:NetSparkle/Downloaders/AsyncHelper.cs:NetSparkleUpdater.Downloaders.AsyncHelper","CSharpClass:NetSparkleUpdater.Downloaders.AsyncHelper"]]]]);

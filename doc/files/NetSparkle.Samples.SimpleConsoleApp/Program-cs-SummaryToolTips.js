@@ -1,0 +1,1 @@
+﻿NDSummary.OnToolTipsLoaded("File:NetSparkle.Samples.SimpleConsoleApp/Program.cs",{1820:"<div class=\"NDToolTip TFunction LCSharp\"><div id=\"NDPrototype1820\" class=\"NDPrototype\"><div class=\"PSection PPlainSection\">Console.ReadLine()</div></div></div>"});

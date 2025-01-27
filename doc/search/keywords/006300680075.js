@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("chu",["Property"],[["ChunkSize",,[["NetSparkleUpdater.SignatureVerifiers.Ed25519Checker",,,,0,"File:NetSparkle/SignatureVerifiers/Ed25519Checker.cs:NetSparkleUpdater.SignatureVerifiers.Ed25519Checker.ChunkSize","CSharpClass:NetSparkleUpdater.SignatureVerifiers.Ed25519Checker:ChunkSize"]]]]);

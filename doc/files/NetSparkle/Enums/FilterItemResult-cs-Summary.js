@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:NetSparkle/Enums/FilterItemResult.cs","FilterItemResult.cs");NDSummary.OnSummaryLoaded("File:NetSparkle/Enums/FilterItemResult.cs",[["C#","CSharp"]],[["Enums","Enumeration"],["Groups","Group"]],[[291,0,1,"Types","NetSparkleUpdater.Enums.Types"],[292,0,0,"FilterItemResult","NetSparkleUpdater.Enums.FilterItemResult"]]);

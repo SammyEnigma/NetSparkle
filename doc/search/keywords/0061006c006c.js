@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("all",["Property"],[["AllSuffixes",,[["NetSparkleUpdater.AppCastHandlers.SemVerLike",,,,0,"File:NetSparkle/AppCastHandlers/SemVerLike.cs:NetSparkleUpdater.AppCastHandlers.SemVerLike.AllSuffixes","CSharpClass:NetSparkleUpdater.AppCastHandlers.SemVerLike:AllSuffixes"]]]]);

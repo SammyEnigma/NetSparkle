@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("sea",["Property"],[["SearchBinarySubDirectories",,[["NetSparkleUpdater.AppCastGenerator.Options",,,,0,"File:NetSparkle.Tools.AppCastGenerator/Options.cs:NetSparkleUpdater.AppCastGenerator.Options.SearchBinarySubDirectories","CSharpClass:NetSparkleUpdater.AppCastGenerator.Options:SearchBinarySubDirectories"]]]]);

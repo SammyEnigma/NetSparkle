@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tex",["Class"],[["TextHelper",,[["NetSparkleUpdater.AppCastHandlers.SemVerLike",,,,0,"File:NetSparkle/AppCastHandlers/SemVerLike.cs:NetSparkleUpdater.AppCastHandlers.SemVerLike.TextHelper","CSharpClass:NetSparkleUpdater.AppCastHandlers.SemVerLike.TextHelper"]]]]);

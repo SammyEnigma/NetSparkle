@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("dll",["Property"],[["DllPath",,[["NetSparkleUnitTests.AssemblyAccessorTestsFixture",,,,0,"File:NetSparkle.Tests/AssemblyAccessorTests.cs:NetSparkleUnitTests.AssemblyAccessorTestsFixture.DllPath","CSharpClass:NetSparkleUnitTests.AssemblyAccessorTestsFixture:DllPath"]]]]);

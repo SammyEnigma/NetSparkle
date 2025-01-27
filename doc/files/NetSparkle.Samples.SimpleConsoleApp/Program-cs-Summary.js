@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:NetSparkle.Samples.SimpleConsoleApp/Program.cs","Program.cs");NDSummary.OnSummaryLoaded("File:NetSparkle.Samples.SimpleConsoleApp/Program.cs",[["C#","CSharp"]],[["Functions","Function"],["Groups","Group"]],[[1819,0,1,"Functions","Functions"],[1820,0,0,"<span class=\"Qualifier\">Console.</span>&#8203;ReadLine","Console.ReadLine"]]);

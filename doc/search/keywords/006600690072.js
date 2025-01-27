@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("fir",["Function"],[["FirstItemIsLatestInSeriesOfChannel",,[["NetSparkleUnitTests.ChannelAppCastFilterTests",,,,0,"File:NetSparkle.Tests/ChannelAppCastFilterTests.cs:NetSparkleUnitTests.ChannelAppCastFilterTests.FirstItemIsLatestInSeriesOfChannel","CSharpClass:NetSparkleUnitTests.ChannelAppCastFilterTests:FirstItemIsLatestInSeriesOfChannel"]]]]);

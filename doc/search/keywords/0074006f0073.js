@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("tos",["Function"],[["ToString",,[["NetSparkleUpdater.AppCastHandlers.SemVerLike",,,,0,"File:NetSparkle/AppCastHandlers/SemVerLike.cs:NetSparkleUpdater.AppCastHandlers.SemVerLike.ToString","CSharpClass:NetSparkleUpdater.AppCastHandlers.SemVerLike:ToString"]]]]);

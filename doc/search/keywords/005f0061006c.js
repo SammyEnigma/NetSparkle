@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("_al",["Variable"],[["_alwaysInstallLatest",,[["NetSparkleUnitTests.SparkleUpdaterTests",,,,0,"File:NetSparkle.Tests/SparkleUpdaterTests.cs:NetSparkleUnitTests.SparkleUpdaterTests._alwaysInstallLatest","CSharpClass:NetSparkleUnitTests.SparkleUpdaterTests:_alwaysInstallLatest"]]]]);

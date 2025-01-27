@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("noo",["Function"],[["NoOlderVersionsTests",,[["NetSparkleUnitTests.AppCastReducersTests",,,,0,"File:NetSparkle.Tests/AppCastReducersTests.cs:NetSparkleUnitTests.AppCastReducersTests.NoOlderVersionsTests","CSharpClass:NetSparkleUnitTests.AppCastReducersTests:NoOlderVersionsTests"]]]]);

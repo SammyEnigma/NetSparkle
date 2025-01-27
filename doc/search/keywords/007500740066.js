@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("utf",["Class"],[["Utf8StringWriter",,[["NetSparkleUpdater.AppCastHandlers.XMLAppCastGenerator",,,,0,"File:NetSparkle/AppCastHandlers/XMLAppCastGenerator.cs:NetSparkleUpdater.AppCastHandlers.XMLAppCastGenerator.Utf8StringWriter","CSharpClass:NetSparkleUpdater.AppCastHandlers.XMLAppCastGenerator.Utf8StringWriter"]]]]);

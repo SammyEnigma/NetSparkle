@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("non",["Function"],[["NonStableIgnoredIfNoChannels",,[["NetSparkleUnitTests.ChannelAppCastFilterTests",,,,0,"File:NetSparkle.Tests/ChannelAppCastFilterTests.cs:NetSparkleUnitTests.ChannelAppCastFilterTests.NonStableIgnoredIfNoChannels","CSharpClass:NetSparkleUnitTests.ChannelAppCastFilterTests:NonStableIgnoredIfNoChannels"]]]]);

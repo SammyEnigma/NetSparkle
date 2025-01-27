@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("File:NetSparkle/Enums/LogWriterOutputMode.cs","LogWriterOutputMode.cs");NDSummary.OnSummaryLoaded("File:NetSparkle/Enums/LogWriterOutputMode.cs",[["C#","CSharp"]],[["Enums","Enumeration"],["Groups","Group"]],[[287,0,1,"Types","NetSparkleUpdater.Enums.Types"],[288,0,0,"LogWriterOutputMode","NetSparkleUpdater.Enums.LogWriterOutputMode"]]);

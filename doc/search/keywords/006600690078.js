@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("fix",["Function"],[["FixOSIfNeeded",,[["NetSparkleUnitTests.SparkleUpdaterFixture",,,,0,"File:NetSparkle.Tests/SparkleUpdaterFixture.cs:NetSparkleUnitTests.SparkleUpdaterFixture.FixOSIfNeeded","CSharpClass:NetSparkleUnitTests.SparkleUpdaterFixture:FixOSIfNeeded"]]]]);

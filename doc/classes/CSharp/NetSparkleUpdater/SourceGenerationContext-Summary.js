@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("CSharpClass:NetSparkleUpdater.SourceGenerationContext","SourceGenerationContext");NDSummary.OnSummaryLoaded("CSharpClass:NetSparkleUpdater.SourceGenerationContext",[["C#","CSharp"]],[["Classes","Class"]],[[712,0,0,"<span class=\"Qualifier\">NetSparkleUpdater.</span>&#8203;SourceGenerationContext"]]);

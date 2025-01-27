@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("cri",["Property"],[["CriticalVersions",,[["NetSparkleUpdater.AppCastGenerator.Options",,,,0,"File:NetSparkle.Tools.AppCastGenerator/Options.cs:NetSparkleUpdater.AppCastGenerator.Options.CriticalVersions","CSharpClass:NetSparkleUpdater.AppCastGenerator.Options:CriticalVersions"]]]]);

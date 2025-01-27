@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("_fa",["Variable"],[["_factory",,[["NetSparkle.Samples.Forms.Multithread.Form1",,,,0,"File:NetSparkle.Samples.Forms.Multithread/Form1.cs:NetSparkle.Samples.Forms.Multithread.Form1._factory","CSharpClass:NetSparkle.Samples.Forms.Multithread.Form1:_factory"]]]]);

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("iba",["Interface"],[["IBackgroundColorChanger",,[["NetSparkleUpdater.UI.Avalonia.Interfaces",,,,0,"File:NetSparkle.UI.Avalonia/Interfaces/IBackgroundColorChanger.cs:NetSparkleUpdater.UI.Avalonia.Interfaces.IBackgroundColorChanger","CSharpClass:NetSparkleUpdater.UI.Avalonia.Interfaces.IBackgroundColorChanger"]]]]);

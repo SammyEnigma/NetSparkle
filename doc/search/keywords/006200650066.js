@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("bef",["Delegate"],[["BeforeBeginInstallerProcess",,[["NetSparkleUpdater",,,,0,"File:NetSparkle/NetSparkleDelegates.cs:NetSparkleUpdater.BeforeBeginInstallerProcess"]]]]);

@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("asm",["Class"],[["AsmResolverAccessor",,[["NetSparkleUpdater.AssemblyAccessors",,,,0,"File:NetSparkle.Unused/AsmResolverAccessor.cs:NetSparkleUpdater.AssemblyAccessors.AsmResolverAccessor","CSharpClass:NetSparkleUpdater.AssemblyAccessors.AsmResolverAccessor"]]]]);

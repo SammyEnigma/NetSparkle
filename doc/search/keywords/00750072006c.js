@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("url",["Class"],[["URLEncodeTests",,[["NetSparkle.Tests.AppCastGenerator",,,,0,"File:NetSparkle.Tests.AppCastGenerator/URLEncodeTests.cs:NetSparkle.Tests.AppCastGenerator.URLEncodeTests","CSharpClass:NetSparkle.Tests.AppCastGenerator.URLEncodeTests"]]]]);

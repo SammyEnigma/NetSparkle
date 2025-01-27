@@ -1,0 +1,1 @@
+﻿NDFramePage.OnPageTitleLoaded("CSharpClass:NetSparkleUnitTests.AssemblyCollection","AssemblyCollection");NDSummary.OnSummaryLoaded("CSharpClass:NetSparkleUnitTests.AssemblyCollection",[["C#","CSharp"]],[["Classes","Class"]],[[1938,0,0,"<span class=\"Qualifier\">NetSparkleUnitTests.</span>&#8203;AssemblyCollection"]]);

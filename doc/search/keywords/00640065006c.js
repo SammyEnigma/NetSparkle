@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("del",["Function"],[["DeleteKeys",,[["NetSparkleUpdater.AppCastGenerator.SignatureManager",,,,0,"File:NetSparkle.Tools.AppCastGenerator/SignatureManager.cs:NetSparkleUpdater.AppCastGenerator.SignatureManager.DeleteKeys","CSharpClass:NetSparkleUpdater.AppCastGenerator.SignatureManager:DeleteKeys"]]]]);

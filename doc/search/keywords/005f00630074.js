@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("_ct",["Variable"],[["_cts",,[["NetSparkleUpdater.Downloaders.WebFileDownloader",,,,0,"File:NetSparkle/Downloaders/WebFileDownloader.cs:NetSparkleUpdater.Downloaders.WebFileDownloader._cts","CSharpClass:NetSparkleUpdater.Downloaders.WebFileDownloader:_cts"]]]]);

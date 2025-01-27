@@ -1,0 +1,1 @@
+﻿NDSearch.OnPrefixDataLoaded("spl",["Function"],[["SplitOnPeriodsAndFindVersion",,[["NetSparkleUpdater.AppCastGenerator.AppCastMaker",,,,0,"File:NetSparkle.Tools.AppCastGenerator/AppCastMaker.cs:NetSparkleUpdater.AppCastGenerator.AppCastMaker.SplitOnPeriodsAndFindVersion","CSharpClass:NetSparkleUpdater.AppCastGenerator.AppCastMaker:SplitOnPeriodsAndFindVersion"]]]]);
