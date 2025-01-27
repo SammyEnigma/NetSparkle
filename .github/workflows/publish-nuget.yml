@@ -170,6 +170,7 @@ jobs:
             msbuild NetSparkle.UI.WinForms.NetFramework.csproj /property:Configuration=Release /t:Restore
             msbuild NetSparkle.UI.WinForms.NetFramework.csproj /property:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg
             msbuild -t:pack /property:Configuration=Release /p:IncludeSymbols=true /p:SymbolPackageFormat=snupkg
+            cd ${{ github.workspace }}/src/bin/Release/NetSparkle.UI.WinForms.NetFramework
             nuget push *.nupkg -Source https://api.nuget.org/v3/index.json -SkipDuplicate -verbosity detailed
             cd ${{ github.workspace }}
 
