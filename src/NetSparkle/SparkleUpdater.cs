@@ -326,8 +326,10 @@ namespace NetSparkleUpdater
         /// This defaults to <see cref="Environment.CommandLine"/>.
         /// Used in conjunction with RestartExecutablePath to restart the application --
         /// cd "{RestartExecutablePath}"
-        /// {RelaunchAfterUpdateCommandPrefix}"{RestartExecutableName}" is what is called to restart the app,
-        /// so make sure you add a space after RelaunchAfterUpdateCommandPrefix if needed.
+        /// {RelaunchAfterUpdateCommandPrefix}"{RestartExecutableName}"{RelaunchAfterUpdateCommandSuffix} 
+        /// is what is called to restart the app,
+        /// so make sure you add a space after RelaunchAfterUpdateCommandPrefix if needed, but a space after
+        /// RelaunchAfterUpdateCommandSuffix is not needed and will be added for you.
         /// </summary>
         public string RestartExecutableName
         {
@@ -372,6 +374,13 @@ namespace NetSparkleUpdater
         /// Contribution from @daniel-pastalab
         /// </summary>
         public string? RelaunchAfterUpdateCommandPrefix { get; set; }
+
+        /// <summary>
+        /// Defines a command suffix that will be used to open the executable (such as command line flags for your app).
+        /// This suffixed command will not be auto-escaped with quotes for you, so if that's needed, make sure to do it yourself.
+        /// A single space WILL be added for you before this suffix.
+        /// </summary>
+        public string? RelaunchAfterUpdateCommandSuffix { get; set; }
 
         /// <summary>
         /// The object that verifies signatures (DSA, Ed25519, or otherwise) of downloaded items
@@ -1522,7 +1531,7 @@ namespace NetSparkleUpdater
             string relaunchAfterUpdate = "";
             if (RelaunchAfterUpdate)
             {
-                var relaunchLine = $@"{RelaunchAfterUpdateCommandPrefix ?? ""}""{executableName}""";
+                var relaunchLine = $@"{RelaunchAfterUpdateCommandPrefix ?? ""}""{executableName}"" {RelaunchAfterUpdateCommandSuffix}";
                 relaunchAfterUpdate = $@"
                     cd ""{workingDir}""
                     {relaunchLine.Trim()}";
