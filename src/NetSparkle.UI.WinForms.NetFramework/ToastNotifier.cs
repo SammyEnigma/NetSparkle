@@ -5,7 +5,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace NetSparkleUpdater
+namespace NetSparkleUpdater.UI.WinForms
 {
     /// <summary>
     /// Like a notification ballon, but more reliable "toast" because it slowly goes up, then down.
