@@ -886,9 +886,11 @@ namespace NetSparkleUpdater
                         filename = await UpdateDownloader.RetrieveDestinationFileNameAsync(item);
                         LogWriter?.PrintMessage("Attempting to get download file name from server. This is what we got: {0} (is it null or whitespace? {1})", filename ?? "", string.IsNullOrWhiteSpace(filename));
                     }
-                    catch (Exception)
+                    catch (Exception e)
                     {
                         // ignore
+                        LogWriter?.PrintMessage("Got Exception when attempting to get " +
+                            "download file name via RetrieveDestinationFileNameAsync: {0}", e.Message);
                     }
                 }
 
@@ -900,9 +902,12 @@ namespace NetSparkleUpdater
                         filename = Path.GetFileName(new Uri(item.DownloadLink).LocalPath);
                         LogWriter?.PrintMessage("Attempting to get download file name based on link. This is what we got: {0} (is it null or whitespace? {1})", filename, string.IsNullOrWhiteSpace(filename));
                     }
-                    catch (UriFormatException)
+                    catch (UriFormatException formatException)
                     {
                         // ignore
+                        LogWriter?.PrintMessage("Got UriFormatException when attempting to get " +
+                            "download file name based on download link via Path.GetFileName(new Uri(item.DownloadLink).LocalPath)" + 
+                            ": {0}", formatException.Message);
                     }
                 }
 
@@ -918,9 +923,11 @@ namespace NetSparkleUpdater
                             var appCastItem = new AppCastItem() { DownloadLink = downloadUrl.ToString() };
                             filename = await UpdateDownloader.RetrieveDestinationFileNameAsync(appCastItem);
                         }
-                        catch (Exception)
+                        catch (Exception e)
                         {
                             // ignore
+                            LogWriter?.PrintMessage("Got Exception when attempting to get " +
+                                "download file name via URL {1}: {0}", e.Message, downloadUrl.ToString());
                         }
                     }
 
@@ -931,9 +938,11 @@ namespace NetSparkleUpdater
                         {
                             filename = Path.GetFileName(downloadUrl.LocalPath);
                         }
-                        catch (UriFormatException)
+                        catch (UriFormatException uException)
                         {
-                            // ignore
+                            LogWriter?.PrintMessage("Got UriFormatException when attempting to get " +
+                                "download file name based on download link via Path.GetFileName(downloadUrl.LocalPath)" + 
+                                ": {0}", uException.Message);
                         }
                     }
                     LogWriter?.PrintMessage("After attempting relative path resolving, filename is {0}", filename ?? "");
