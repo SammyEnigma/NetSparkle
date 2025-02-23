@@ -102,10 +102,10 @@ jobs:
         run: dotnet build ${{ github.workspace }}/src/NetSparkle.UI.Avalonia/NetSparkle.UI.Avalonia.csproj --configuration Release
 
       - name: Build NetSparkle.Tools.AppCastGenerator in Release
-        run: dotnet build ${{ github.workspace }}/src/NetSparkle.Tools.AppCastGenerator/NetSparkle.Tools.AppCastGenerator.csproj --configuration Release
+        run: dotnet build ${{ github.workspace }}/src/NetSparkle.Tools.AppCastGenerator/NetSparkle.Tools.AppCastGenerator.csproj --configuration Release -m:1
 
       - name: Build NetSparkle.Tools.DSAHelper in Release
-        run: dotnet build ${{ github.workspace }}/src/NetSparkle.Tools.DSAHelper/NetSparkle.Tools.DSAHelper.csproj --configuration Release
+        run: dotnet build ${{ github.workspace }}/src/NetSparkle.Tools.DSAHelper/NetSparkle.Tools.DSAHelper.csproj --configuration Release -m:1
 
       - name: Build NetSparkle.UI.WinForms.NetCore in Release
         run: dotnet build ${{ github.workspace }}/src/NetSparkle.UI.WinForms.NetCore/NetSparkle.UI.WinForms.NetCore.csproj --configuration Release
