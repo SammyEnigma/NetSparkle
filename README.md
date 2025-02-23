@@ -139,7 +139,7 @@ In your project file, make sure you set up a few things so that the library can 
     <Description>My app is cool (not required)</Description>
     <Company>My Company Name (required unless you set the IAssemblyAccessor save path yourself)</Company>
     <Product>My Product (required unless you set the IAssemblyAccessor save path yourself; set to product name e.g. MyBestApp)</Product>
-    <Copyright>2024 MyCompanyName</Copyright>
+    <Copyright>2025 MyCompanyName</Copyright>
 </PropertyGroup>
 ```
 
