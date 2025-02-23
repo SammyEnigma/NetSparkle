@@ -187,6 +187,10 @@ namespace NetSparkle.Tests.AppCastGenerator
             Assert.Null(AppCastMaker.GetVersionFromName("app 9.8.7+meta+meta.txt"));
             Assert.Null(AppCastMaker.GetVersionFromName("app 9.8.7-whatever+meta+meta.txt"));
             Assert.Null(AppCastMaker.GetVersionFromName("app 99999999999999999999999.999999999999999999.99999999999999999----RC-SNAPSHOT.12.09.1--------------------------------..12.txt"));
+
+            // following reported as test cases by a Gitter user:
+            Assert.Equal("7.0.0", AppCastMaker.GetVersionFromName("app.7.0.0.tar.gz"));
+            Assert.Equal("7.0.0-beta1", AppCastMaker.GetVersionFromName("app.7.0.0-beta1.tar.gz"));
         }
 
         [Fact]

@@ -114,9 +114,10 @@ namespace NetSparkleUpdater.AppCastGenerator
 
         private static string? SplitOnPeriodsAndFindVersion(string part)
         {
-            // Start splitting and going from left to right.
-            // Keep record of last applicable version and check one more segment after it.
-            // If it fails, then the last one we found is what we need.
+            // Start splitting and go from right to left.
+            // Keep record of last applicable version and check one more segment before it.
+            // If a check fails, then whatever we found previously is what we want.
+            Console.WriteLine("Splitting {0} on periods", part);
             var segments = part.Split('.');
             string tempSegment = "";
             bool lastVersionToCheck = false;
@@ -124,17 +125,31 @@ namespace NetSparkleUpdater.AppCastGenerator
             for (int i = segments.Length - 1; i >= 0; i--)
             {
                 var segment = segments[i];
-                // if segment has text in it at the start and digits later, get rid of text and +/- symbol
+                // if segment has text in it, get rid of text and +/- symbol and just look at the number
                 if (Regex.IsMatch(segment, @"[a-zA-Z]") && Regex.IsMatch(segment, @"\d"))
                 {
-                    var match = Regex.Matches(segment, @"[^+-]*[a-zA-Z][+-]?");
-                    if (match.Count > 0)
+                    // if the first char is a digit, the text is probably at the end.
+                    // but we only want to apply this if we are looking at things like
+                    // "1.0.0-beta1", not "1.0.0-beta.alpha", the latter of which is invalid,
+                    // so we only apply this first check for the final segment
+                    if (char.IsDigit(segment[0]) && i == segments.Length - 1)
                     {
-                        segment = segment.Substring(match.Last().Index + match.Last().Length);
-                        lastVersionToCheck = true;
+                        segment = RemoveTextBlockFromRight(segment);
+                    }
+                    else
+                    {
+                        // only remove text if it's at start, e.g. "MyApp3.0.0"
+                        var match = Regex.Matches(segment, @"[^+-]*[a-zA-Z][+-]?");
+                        if (match.Count > 0)
+                        {
+                            segment = segment.Substring(match.Last().Index + match.Last().Length);
+                            lastVersionToCheck = true;
+                        }
                     }
                 }
 
+                // add in what we just found to the overall version string and make sure it's still
+                // a valid version string overall
                 tempSegment = string.IsNullOrWhiteSpace(tempSegment) ? segment : segment + "." + tempSegment;
                 tempSegment = tempSegment.Trim('.');
                 if (ContainsValidVersionInfo(tempSegment))
@@ -147,6 +162,7 @@ namespace NetSparkleUpdater.AppCastGenerator
                     break;
                 }
             }
+            Console.WriteLine("Returning {0}", lastValidVersionLeft);
             return lastValidVersionLeft;
         }
 
@@ -254,7 +270,6 @@ namespace NetSparkleUpdater.AppCastGenerator
 
                 string? lastValidVersionLeft = FindVersionInfoInString(leftPart, removeTextFromLeft: true);
                 string? lastValidVersionRight = FindVersionInfoInString(rightPart, removeTextFromLeft: false);
-
                 // Right part is preferred over left part
                 if (lastValidVersionRight != null)
                 {
