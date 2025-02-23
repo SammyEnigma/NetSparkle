@@ -43,7 +43,7 @@ namespace NetSparkleUnitTests
         [Theory]
         [InlineData(AppCastMakerType.Xml)]
         [InlineData(AppCastMakerType.Json)]
-        public async void GeneratorOutputIsSorted(AppCastMakerType appCastMakerType)
+        public async Task GeneratorOutputIsSorted(AppCastMakerType appCastMakerType)
         {
             var appCast = new AppCast()
             {
@@ -101,7 +101,7 @@ namespace NetSparkleUnitTests
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.SerializeAppCastAsync))]
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.SerializeAppCastToFile))]
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.SerializeAppCastToFileAsync))]
-        public async void TestCanSerializeAppCast(AppCastMakerType appCastMakerType, string serializeFuncName)
+        public async Task TestCanSerializeAppCast(AppCastMakerType appCastMakerType, string serializeFuncName)
         {
             var appCast = new AppCast()
             {
@@ -238,7 +238,7 @@ namespace NetSparkleUnitTests
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.DeserializeAppCastAsync))]
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.DeserializeAppCastFromFile))]
         [InlineData(AppCastMakerType.Json, nameof(IAppCastGenerator.DeserializeAppCastFromFileAsync))]
-        public async void TestCanDeserializeAppCast(AppCastMakerType appCastMakerType, string deserializeFuncName)
+        public async Task TestCanDeserializeAppCast(AppCastMakerType appCastMakerType, string deserializeFuncName)
         {
             var appCastToDeserialize = "";
             if (appCastMakerType == AppCastMakerType.Xml)

@@ -190,7 +190,7 @@ namespace NetSparkleUnitTests
         {
             if (!_fixture.DidSucceed)
             {
-                Assert.True(false, "Failed to build DLL");
+                Assert.Fail("Failed to build DLL");
             }
             var accessor = new AsmResolverAccessor(_fixture.DllPath);
             Assert.Equal(AssemblyAccessorTestsFixture.Company, accessor.AssemblyCompany);
@@ -207,7 +207,7 @@ namespace NetSparkleUnitTests
         {
             if (!_fixture.DidSucceed)
             {
-                Assert.True(false, "Failed to build DLL");
+                Assert.Fail("Failed to build DLL");
             }
             var accessor = new AssemblyDiagnosticsAccessor(_fixture.DllPath);
             Assert.Equal(AssemblyAccessorTestsFixture.Company, accessor.AssemblyCompany);
@@ -223,7 +223,7 @@ namespace NetSparkleUnitTests
         {
             if (!_fixture.DidSucceed)
             {
-                Assert.True(false, "Failed to build DLL");
+                Assert.Fail("Failed to build DLL");
             }
             #pragma warning disable CS0618 // don't worry about deprecation notice
             var accessor = new AssemblyReflectionAccessor(_fixture.DllPath);
