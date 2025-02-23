@@ -9,6 +9,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using NetSparkleUpdater.Interfaces;
 using NetSparkleUpdater.AppCastHandlers;
+using System.Threading.Tasks;
 
 namespace NetSparkle.Tests.AppCastGenerator
 {
@@ -858,7 +859,7 @@ namespace NetSparkle.Tests.AppCastGenerator
         [Theory]
         [InlineData(AppCastMakerType.Xml)]
         [InlineData(AppCastMakerType.Json)]
-        public async void NetSparkleCanParseHumanReadableAppCast(AppCastMakerType appCastMakerType)
+        public async Task NetSparkleCanParseHumanReadableAppCast(AppCastMakerType appCastMakerType)
         {
             var tempDir = GetCleanTempDir();
             // create dummy file
@@ -1055,7 +1056,7 @@ namespace NetSparkle.Tests.AppCastGenerator
         [Theory]
         [InlineData(AppCastMakerType.Xml)]
         [InlineData(AppCastMakerType.Json)]
-        public async void CanSetCriticalVersion(AppCastMakerType appCastMakerType)
+        public async Task CanSetCriticalVersion(AppCastMakerType appCastMakerType)
         {
             // setup test dir
             var tempDir = GetCleanTempDir();
@@ -1145,7 +1146,7 @@ namespace NetSparkle.Tests.AppCastGenerator
         [InlineData(AppCastMakerType.Xml, true)]
         [InlineData(AppCastMakerType.Xml, false)]
         [InlineData(AppCastMakerType.Json, true)]
-        public async void CanChangeXmlSignatureOutput(AppCastMakerType appCastMakerType, bool useEdSignatureAttr)
+        public async Task CanChangeXmlSignatureOutput(AppCastMakerType appCastMakerType, bool useEdSignatureAttr)
         {
             // setup test dir
             var tempDir = GetCleanTempDir();
@@ -1262,7 +1263,7 @@ namespace NetSparkle.Tests.AppCastGenerator
         [Theory]
         [InlineData(AppCastMakerType.Xml)]
         [InlineData(AppCastMakerType.Json)]
-        public async void CanSetChannel(AppCastMakerType appCastMakerType)
+        public async Task CanSetChannel(AppCastMakerType appCastMakerType)
         {
             // setup test dir
             var tempDir = GetCleanTempDir();
@@ -1780,7 +1781,7 @@ namespace NetSparkle.Tests.AppCastGenerator
                 }
                 else
                 {
-                    Assert.True(false, "Failed to build assembly");
+                    Assert.Fail("Failed to build assembly");
                 }
             }
             finally
