@@ -1539,13 +1539,17 @@ namespace NetSparkleUpdater
             if (RelaunchAfterUpdate)
             {
                 var relaunchLine = $@"{RelaunchAfterUpdateCommandPrefix ?? ""}""{executableName}"" {RelaunchAfterUpdateCommandSuffix}";
+                LogWriter?.PrintMessage("Planning to relaunch software with the following command: " + 
+                "{0} (Prefix: {1}, Executable name: {2}, Suffix: {3})", 
+                    relaunchLine, RelaunchAfterUpdateCommandPrefix ?? "", 
+                    executableName, RelaunchAfterUpdateCommandSuffix ?? "");
                 relaunchAfterUpdate = $@"
                     cd ""{workingDir}""
                     {relaunchLine.Trim()}";
             }
 
-            using (FileStream stream = new FileStream(batchFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.None, 4096, true))
-            using (StreamWriter write = new StreamWriter(stream, new UTF8Encoding(false))/*new StreamWriter(batchFilePath, false, new UTF8Encoding(false))*/)
+            using (var stream = new FileStream(batchFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.None, 4096, true))
+            using (var write = new StreamWriter(stream, new UTF8Encoding(false))/*new StreamWriter(batchFilePath, false, new UTF8Encoding(false))*/)
             {
                 // We should wait until the host process has died before starting the installer.
                 // This way, any DLLs or other items can be replaced properly.
