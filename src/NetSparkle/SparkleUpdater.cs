@@ -906,39 +906,37 @@ namespace NetSparkleUpdater
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(filename))
+                if (string.IsNullOrWhiteSpace(filename) && 
+                    (item.DownloadLink.StartsWith("..") || item.DownloadLink.StartsWith('.') || !item.DownloadLink.Contains('/')))
                 {
-                    if (item.DownloadLink.StartsWith("..") || item.DownloadLink.StartsWith("."))
+                    LogWriter?.PrintMessage("Trying for a relative path with download link of {0} and app cast URL of {1}", item.DownloadLink, AppCastUrl);
+                    var downloadUrl = Utilities.GetAbsoluteURL(item.DownloadLink, AppCastUrl);
+                    if (CheckServerFileName && UpdateDownloader != null)
                     {
-                        LogWriter?.PrintMessage("Trying for a relative path with download link of {0} and app cast URL of {1}", item.DownloadLink, AppCastUrl);
-                        var downloadUrl = Utilities.GetAbsoluteURL(item.DownloadLink, AppCastUrl);
-                        if (CheckServerFileName && UpdateDownloader != null)
+                        try
                         {
-                            try
-                            {
-                                var appCastItem = new AppCastItem() { DownloadLink = downloadUrl.ToString() };
-                                filename = await UpdateDownloader.RetrieveDestinationFileNameAsync(appCastItem);
-                            }
-                            catch (Exception)
-                            {
-                                // ignore
-                            }
+                            var appCastItem = new AppCastItem() { DownloadLink = downloadUrl.ToString() };
+                            filename = await UpdateDownloader.RetrieveDestinationFileNameAsync(appCastItem);
                         }
-
-                        if (string.IsNullOrWhiteSpace(filename))
+                        catch (Exception)
                         {
-                            // attempt to get download file name based on download link
-                            try
-                            {
-                                filename = Path.GetFileName(downloadUrl.LocalPath);
-                            }
-                            catch (UriFormatException)
-                            {
-                                // ignore
-                            }
+                            // ignore
                         }
-                        LogWriter?.PrintMessage("After attempting relative path resolving, filename is {0}", filename ?? "");
                     }
+
+                    if (string.IsNullOrWhiteSpace(filename))
+                    {
+                        // attempt to get download file name based on download link
+                        try
+                        {
+                            filename = Path.GetFileName(downloadUrl.LocalPath);
+                        }
+                        catch (UriFormatException)
+                        {
+                            // ignore
+                        }
+                    }
+                    LogWriter?.PrintMessage("After attempting relative path resolving, filename is {0}", filename ?? "");
                 }
 
                 if (!string.IsNullOrWhiteSpace(filename))
