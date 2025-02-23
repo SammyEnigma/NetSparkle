@@ -912,7 +912,7 @@ namespace NetSparkleUpdater
                 }
 
                 if (string.IsNullOrWhiteSpace(filename) && 
-                    (item.DownloadLink.StartsWith("..") || item.DownloadLink.StartsWith('.') || !item.DownloadLink.Contains('/')))
+                    (item.DownloadLink.StartsWith("..") || item.DownloadLink.StartsWith(".") || !item.DownloadLink.Contains("/")))
                 {
                     LogWriter?.PrintMessage("Trying for a relative path with download link of {0} and app cast URL of {1}", item.DownloadLink, AppCastUrl);
                     var downloadUrl = Utilities.GetAbsoluteURL(item.DownloadLink, AppCastUrl);
