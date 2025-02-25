@@ -117,7 +117,7 @@ namespace NetSparkleUpdater.AppCastGenerator
             // Start splitting and go from right to left.
             // Keep record of last applicable version and check one more segment before it.
             // If a check fails, then whatever we found previously is what we want.
-            Console.WriteLine("Splitting {0} on periods", part);
+            // Console.WriteLine("Splitting {0} on periods", part);
             var segments = part.Split('.');
             string tempSegment = "";
             bool lastVersionToCheck = false;
@@ -162,7 +162,7 @@ namespace NetSparkleUpdater.AppCastGenerator
                     break;
                 }
             }
-            Console.WriteLine("Returning {0}", lastValidVersionLeft);
+            //Console.WriteLine("Returning {0}", lastValidVersionLeft);
             return lastValidVersionLeft;
         }
 
