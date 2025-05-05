@@ -222,7 +222,7 @@ namespace NetSparkleUpdater.Configurations
             key.SetValue("CheckForUpdate", true.ToString() /* always check for updates next time! */, RegistryValueKind.String);
             key.SetValue("LastCheckTime", ConvertDateToString(LastCheckTime), RegistryValueKind.String);
             key.SetValue("SkipThisVersion", LastVersionSkipped ?? "", RegistryValueKind.String);
-            key.SetValue("DidRunOnce", DidRunOnce.ToString(), RegistryValueKind.String);
+            key.SetValue("DidRunOnce", true.ToString(), RegistryValueKind.String);
             key.SetValue("LastProfileUpdate", ConvertDateToString(LastConfigUpdate), RegistryValueKind.String);
             if (InstalledVersion != null)
             {

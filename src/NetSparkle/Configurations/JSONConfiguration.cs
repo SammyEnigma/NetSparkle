@@ -208,7 +208,7 @@ namespace NetSparkleUpdater.Configurations
                 CheckForUpdate = true,
                 LastCheckTime = this.LastCheckTime,
                 LastVersionSkipped = this.LastVersionSkipped,
-                DidRunOnce = this.DidRunOnce,
+                DidRunOnce = true,
                 LastConfigUpdate = DateTime.Now,
                 PreviousVersionOfSoftwareRan = InstalledVersion
             };
