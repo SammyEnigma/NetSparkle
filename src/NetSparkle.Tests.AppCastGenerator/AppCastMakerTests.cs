@@ -10,6 +10,7 @@ using System.Diagnostics;
 using NetSparkleUpdater.Interfaces;
 using NetSparkleUpdater.AppCastHandlers;
 using System.Threading.Tasks;
+using System.IO.Enumeration;
 
 namespace NetSparkle.Tests.AppCastGenerator
 {
@@ -1647,6 +1648,138 @@ namespace NetSparkle.Tests.AppCastGenerator
             items.Sort((a, b) => b.SemVerLikeVersion.CompareTo(a.SemVerLikeVersion));
             Assert.Equal("2.0-beta1", items[0].Version);
             Assert.Equal("2.0-alpha.1", items[1].Version);
+        }
+
+        [Theory]
+        [InlineData(AppCastMakerType.Xml)]
+        [InlineData(AppCastMakerType.Json)]
+        public void CanAddSameVersionDiffOSItem(AppCastMakerType appCastMakerType)
+        {
+            // GitHub: #643
+            // create initial app cast that already has data in it
+            AppCastMaker maker = appCastMakerType == AppCastMakerType.Xml
+                ? new XMLAppCastMaker(_fixture.GetSignatureManager(), new Options())
+                : new JsonAppCastMaker(_fixture.GetSignatureManager(), new Options());
+            // create fake app cast file
+            var appCastData = @"";
+            // setup test dir
+            var tempDir = GetCleanTempDir();
+            var tmpAppCastFileName = "myappcast";
+            var fakeAppCastFilePath = Path.Combine(tempDir, tmpAppCastFileName + "." + maker.GetAppCastExtension());
+            File.WriteAllText(fakeAppCastFilePath, appCastData);
+            var (items, productName) = maker.GetItemsAndProductNameFromExistingAppCast(fakeAppCastFilePath, false);
+            Assert.Empty(items);
+            Assert.Null(productName);
+            // now create something with some actual data!
+            if (appCastMakerType == AppCastMakerType.Xml)
+            {
+                appCastData = @"
+<?xml version=""1.0"" encoding=""UTF-8""?>
+<rss xmlns:dc=""http://purl.org/dc/elements/1.1/"" xmlns:sparkle=""http://www.andymatuschak.org/xml-namespaces/sparkle"" version=""2.0"">
+    <channel>
+        <title>NetSparkle Test App</title>
+        <link>https://netsparkleupdater.github.io/NetSparkle/files/sample-app/appcast.xml</link>
+        <description>Most recent changes with links to updates.</description>
+        <language>en</language>
+        <item>
+            <title>Version 2.1 - Windows</title>
+            <sparkle:releaseNotesLink>
+            https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.1-release-notes.md
+            </sparkle:releaseNotesLink>
+            <pubDate>Fri, 28 Oct 2016 10:30:00 +0000</pubDate>
+            <enclosure url=""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe""
+                       sparkle:version=""2.1""
+                       sparkle:shortVersionString=""2.1""
+                       sparkle:os=""windows""
+                       length=""1337""
+                       type=""application/octet-stream""
+                       sparkle:signature=""bar"" />
+        </item>
+    </channel>
+</rss>
+".Trim();
+            }
+            else
+            {
+                appCastData = @"
+                {
+                    ""title"": ""NetSparkle Test App"",
+                    ""langauge"": ""en"",
+                    ""description"": ""Most recent changes with links to updates."",
+                    ""link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/appcast.json"",
+                    ""items"": [
+                        {
+                            ""title"": ""Version 2.1 - Windows"",
+                            ""release_notes_link"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/2.1-release-notes.md"",
+                            ""publication_date"": ""2016-10-28T10:30:00"",
+                            ""url"": ""https://netsparkleupdater.github.io/NetSparkle/files/sample-app/NetSparkleUpdate.exe"",
+                            ""version"": ""2.1"",
+                            ""short_version"": ""2.1"",
+                            ""os"": ""windows"",
+                            ""size"": 1337,
+                            ""type"": ""application/octet-stream"",
+                            ""signature"": ""bar""
+                        }
+                    ]
+                }".Trim();
+            }
+            File.WriteAllText(fakeAppCastFilePath, appCastData);
+            Console.WriteLine("Just wrote first app cast at {0}", fakeAppCastFilePath);
+            Console.WriteLine(File.ReadAllText(fakeAppCastFilePath));
+            (items, productName) = maker.GetItemsAndProductNameFromExistingAppCast(fakeAppCastFilePath, false);
+            Assert.Single(items);
+            Assert.Equal("Version 2.1 - Windows", items[0].Title);
+            Assert.Equal("2.1", items[0].Version);
+            Assert.Equal("2.1", items[0].ShortVersion);
+            Assert.Equal("2.1", items[0].SemVerLikeVersion.Version);
+            Assert.Equal(1337, items[0].UpdateSize);
+            Assert.Equal("bar", items[0].DownloadSignature);
+            Assert.Equal("windows", items[0].OperatingSystem);
+            // now add a new item with the same version but different OS
+            Console.WriteLine("----Now adding a new item w/same version, different OS----");
+            // create dummy files
+            var dummyFilePath = Path.Combine(tempDir, "hello.txt");
+            const int fileSizeBytes = 57;
+            var tempData = RandomString(fileSizeBytes);
+            File.WriteAllText(dummyFilePath, tempData);
+            var opts = new Options()
+            {
+                FileExtractVersion = false,
+                SearchBinarySubDirectories = true,
+                SourceBinaryDirectory = tempDir,
+                Extensions = "txt",
+                OutputDirectory = Path.GetDirectoryName(fakeAppCastFilePath), // so we make sure to reparse the appcast
+                OperatingSystem = "linux",
+                BaseUrl = "https://example.com/downloads",
+                OutputFileName = tmpAppCastFileName,
+                OverwriteOldItemsInAppcast = false,
+                ReparseExistingAppCast = true,
+                FileVersion = "2.1",
+                HumanReadableOutput = true,
+            };
+            maker = appCastMakerType == AppCastMakerType.Xml
+                ? new XMLAppCastMaker(_fixture.GetSignatureManager(), opts)
+                : new JsonAppCastMaker(_fixture.GetSignatureManager(), opts);
+
+            try
+            {
+                var signatureManager = _fixture.GetSignatureManager();
+                Assert.True(signatureManager.KeysExist());
+
+                var appCastFileName = maker.GetPathToAppCastOutput(opts.OutputDirectory, opts.SourceBinaryDirectory, opts.OutputFileName);
+                (items, productName) = maker.LoadAppCastItemsAndProductName(opts.SourceBinaryDirectory, opts.ReparseExistingAppCast, appCastFileName);
+                Assert.NotNull(items);
+                Assert.Equal(2, items.Count);
+                Assert.Equal("2.1", items[0].Version);
+                Assert.Equal("windows", items[0].OperatingSystem);
+                Assert.Equal("2.1", items[1].Version);
+                Assert.Equal("linux", items[1].OperatingSystem);
+            }
+            finally
+            {
+                // make sure tempDir always cleaned up
+                CleanUpDir(tempDir);
+            }
         }
 
         private static string GetDotnetProcessName()
