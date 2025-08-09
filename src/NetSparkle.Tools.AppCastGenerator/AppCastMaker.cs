@@ -511,7 +511,9 @@ namespace NetSparkleUpdater.AppCastGenerator
                 var productName = _opts.ProductName;
                 if (useExistingAppCastItems)
                 {
+                    Console.WriteLine("Grabbing items from existing app cast...", Color.LightBlue);
                     var (existingItems, existingProductName) = GetItemsAndProductNameFromExistingAppCast(outputAppCastFileName, _opts.OverwriteOldItemsInAppcast);
+                    Console.WriteLine("{0} pre-existing item(s) found in a previously created app cast and are being added to the output", existingItems.Count, Color.LightBlue);
                     items.AddRange(existingItems);
                     if (!string.IsNullOrWhiteSpace(existingProductName))
                     {
@@ -547,7 +549,7 @@ namespace NetSparkleUpdater.AppCastGenerator
                     }
                     var semVerLikeVersion = SemVerLike.Parse(productVersion);
 
-                    var itemFoundInAppcast = items.Where(x => x.SemVerLikeVersion != null && x.SemVerLikeVersion.Equals(semVerLikeVersion)).FirstOrDefault();
+                    var itemFoundInAppcast = items.Where(x => x.SemVerLikeVersion != null && x.SemVerLikeVersion.Equals(semVerLikeVersion) && x.OperatingSystem == _opts.OperatingSystem?.Trim()).FirstOrDefault();
                     if (itemFoundInAppcast != null && _opts.OverwriteOldItemsInAppcast)
                     {
                         Console.WriteLine($"Removing existing app cast item with version {semVerLikeVersion} so we can add the version on disk to the app cast...");
@@ -559,6 +561,7 @@ namespace NetSparkleUpdater.AppCastGenerator
                         var item = CreateAppCastItemFromFile(fileInfo, productName ?? "", semVerLikeVersion, usesChangelogs, _opts.ChangeLogFileNamePrefix, _opts.Channel);
                         if (item != null)
                         {
+                            Console.WriteLine("Adding item to app cast with title: {0}, version: {1}, operating system: {1}", item.Title, item.Version, item.OperatingSystem);
                             items.Add(item);
                         }
                     }
