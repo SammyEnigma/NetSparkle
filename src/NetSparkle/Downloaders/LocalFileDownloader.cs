@@ -107,9 +107,13 @@ namespace NetSparkleUpdater.Downloaders
         public async Task DownloadFile(Uri? uri, string downloadFilePath)
         {
             var path = UseLocalUriPath ? uri?.LocalPath : uri?.AbsolutePath;
-            if (path != null)
+            if (path == null)
             {
-                _logger?.PrintMessage("LocalFileDownloader: null uri sent to StartFileDownload; no file downloaded");
+                _logger?.PrintMessage("LocalFileDownloader: DownloadFile had a null Uri; not going to copy anything.");
+            }
+            else
+            {
+                _logger?.PrintMessage("LocalFileDownloader: Starting file copy from {0} to {1}", path, downloadFilePath);
                 await CopyFileAsync(path, downloadFilePath, _cancellationTokenSource.Token);
             }
         }

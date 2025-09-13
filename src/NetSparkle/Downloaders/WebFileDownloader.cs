@@ -72,10 +72,10 @@ namespace NetSparkleUpdater.Downloaders
         /// </summary>
         public virtual void PrepareToDownloadFile()
         {
-            _logger?.PrintMessage("IUpdateDownloader: Preparing to download file...");
+            _logger?.PrintMessage("WebFileDownloader: Preparing to download file...");
             if (_httpClient != null)
             {
-                _logger?.PrintMessage("IUpdateDownloader: HttpClient existed already. Canceling...");
+                _logger?.PrintMessage("WebFileDownloader: HttpClient existed already. Canceling...");
                 // can't re-use WebClient, so cancel old requests
                 // and start a new request as needed
                 if (IsDownloading)
@@ -87,7 +87,7 @@ namespace NetSparkleUpdater.Downloaders
                     } catch {}
                 }
             }
-            _logger?.PrintMessage("IUpdateDownloader: Creating new HttpClient...");
+            _logger?.PrintMessage("WebFileDownloader: Creating new HttpClient...");
             _cts = new CancellationTokenSource();
             _httpClient = CreateHttpClient();
         }
@@ -152,11 +152,11 @@ namespace NetSparkleUpdater.Downloaders
         {
             if (uri == null)
             {
-                _logger?.PrintMessage("StartFileDownloadAsync had a null Uri; not going to download anything");
+                _logger?.PrintMessage("WebFileDownloader: DownloadFile had a null Uri; not going to download anything");
             }
             else 
             {
-                _logger?.PrintMessage("IUpdateDownloader: Starting file download from {0} to {1}", uri, downloadFilePath);
+                _logger?.PrintMessage("WebFileDownloader: Starting file download from {0} to {1}", uri, downloadFilePath);
                 await StartFileDownloadAsync(uri, downloadFilePath);
             }
         }
@@ -261,7 +261,7 @@ namespace NetSparkleUpdater.Downloaders
         /// <inheritdoc/>
         public void CancelDownload()
         {
-            _logger?.PrintMessage("IUpdateDownloader: Canceling download");
+            _logger?.PrintMessage("WebFileDownloader: Canceling download");
             try
             {
                 _cts?.Cancel();
@@ -282,7 +282,7 @@ namespace NetSparkleUpdater.Downloaders
         {
             if (uri == null)
             {
-                _logger?.PrintMessage("StartFileDownloadAsync had a null Uri; not going to download anything");
+                _logger?.PrintMessage("RetrieveDestinationFileNameAsyncForUri had a null Uri; not going to download anything");
                 return "";
             }
             var httpClient = CreateHttpClient();
