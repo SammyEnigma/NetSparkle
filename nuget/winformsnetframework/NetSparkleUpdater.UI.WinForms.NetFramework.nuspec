@@ -19,7 +19,7 @@
    <releaseNotes>3.0: See https://github.com/NetSparkleUpdater/NetSparkle for all information and to file issues/pull requests for and ask questions about this project.</releaseNotes>
     <dependencies>
       <group targetFramework=".NETFramework4.6.2">
-        <dependency id="NetSparkleUpdater.SparkleUpdater" version="3.0.3" exclude="Build,Analyzers" />
+        <dependency id="NetSparkleUpdater.SparkleUpdater" version="3.0.4" exclude="Build,Analyzers" />
       </group>
     </dependencies>
  </metadata>
