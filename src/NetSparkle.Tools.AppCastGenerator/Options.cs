@@ -81,12 +81,12 @@ namespace NetSparkleUpdater.AppCastGenerator
             Default = false)]
         public bool UseEd25519SignatureAttributeForXml { get; set; }
 
-        [Option("public-key-override", SetName = "local", Required = false, HelpText = "Public key override (ignores whatever is in the public key file) for signing binaries. This" +
+        [Option("public-key-override", Required = false, HelpText = "Public key override (ignores whatever is in the public key file) for signing binaries. This" +
             " overrides ALL other public keys set when verifying binaries, INCLUDING public key set via environment variables! " +
             "If not set, uses --key-path (if set) or the default SignatureManager location. Not used in --generate-keys or --export.", Default = "")]
         public string? PublicKeyOverride { get; set; }
 
-        [Option("private-key-override", SetName = "local", Required = false, HelpText = "Private key override (ignores whatever is in the private key file) for signing binaries. This" +
+        [Option("private-key-override", Required = false, HelpText = "Private key override (ignores whatever is in the private key file) for signing binaries. This" +
             " overrides ALL other private keys set when signing binaries, INCLUDING private key set via environment variables! " +
             "If not set, uses --key-path (if set) or the default SignatureManager location. Not used in --generate-keys or --export.", Default = "")]
         public string? PrivateKeyOverride { get; set; }
