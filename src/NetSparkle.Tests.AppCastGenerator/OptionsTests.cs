@@ -20,7 +20,7 @@ namespace NetSparkle.Tests.AppCastGenerator
 
             Assert.Empty(result.Errors);
             Assert.Equal("TestPublicKey", result.Value.PublicKeyOverride);
-            Assert.Equal("TestPublTestPrivateKeyicKey", result.Value.PrivateKeyOverride);
+            Assert.Equal("TestPrivateKey", result.Value.PrivateKeyOverride);
         }
     }
 }
