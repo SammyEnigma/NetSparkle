@@ -51,6 +51,11 @@
   <ItemGroup>
     <ProjectReference Include="..\NetSparkle\NetSparkle.csproj" />
   </ItemGroup>
+  <Target Name="_addDrawingReference" AfterTargets="ResolveTargetingPackAssets">
+    <ItemGroup Condition="'$(TargetFramework)' != 'net462'">
+      <Reference Condition="'%(Reference.FileName)' == 'PresentationCore'" Include="%(Reference.RootDir)%(Reference.Directory)System.Drawing.Common.dll" />
+    </ItemGroup>
+  </Target>
 	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0-windows'">
 		<PackageReference Include="System.Drawing.Common" Version="8.0.19" />
 	</ItemGroup>
@@ -70,11 +75,4 @@
     <None Include="..\..\README.md" Pack="true" PackagePath="\" />
     <None Include="..\NetSparkle\ArtWork\software-update-available.png" Pack="true" PackagePath="\" />
   </ItemGroup>
-   <Target Name="_addDrawingReference" AfterTargets="ResolveTargetingPackAssets">
-    <ItemGroup>
-      <Reference Condition="'%(Reference.FileName)' == 'PresentationCore'" 
-                 Include="%(Reference.RootDir)%(Reference.Directory)System.Drawing.Common.dll;
-                          %(Reference.RootDir)%(Reference.Directory)System.Private.Windows.GdiPlus.dll" />
-    </ItemGroup>
-  </Target>
 </Project>
