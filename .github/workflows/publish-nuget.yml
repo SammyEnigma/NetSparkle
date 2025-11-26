@@ -23,7 +23,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2.0.0
         if: matrix.os == 'windows-latest'
       
-      - name: Setup .NET 6.0, 7.0, 8.0, 9.0 for tests
+      - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10 for tests
         uses: actions/setup-dotnet@v4.3.0
         with:
           dotnet-version: |
@@ -31,6 +31,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
+            10.0.x
 
       - name: Run NetSparkle.Tests in .NET 4.6.2
         run: dotnet test -f net462 ${{ github.workspace }}/src/NetSparkle.Tests/NetSparkle.Tests.csproj
@@ -60,6 +61,12 @@ jobs:
       - name: Run NetSparkle.Tests.AppCastGenerator in .NET 9
         run: dotnet test -f net9.0 ${{ github.workspace }}/src/NetSparkle.Tests.AppCastGenerator/NetSparkle.Tests.AppCastGenerator.csproj
 
+      - name: Run NetSparkle.Tests in .NET 10
+        run: dotnet test -f net10.0 ${{ github.workspace }}/src/NetSparkle.Tests/NetSparkle.Tests.csproj
+
+      - name: Run NetSparkle.Tests.AppCastGenerator in .NET 10
+        run: dotnet test -f net10.0 ${{ github.workspace }}/src/NetSparkle.Tests.AppCastGenerator/NetSparkle.Tests.AppCastGenerator.csproj
+
   build:
     name: Build all packages as smoke test
     runs-on: windows-latest
@@ -74,7 +81,7 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
       
-      - name: Setup .NET 6.0, 7.0, 8.0, 9.0
+      - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10.0
         uses: actions/setup-dotnet@v4.3.0
         with:
           dotnet-version: |
@@ -82,6 +89,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
+            10.0.x
 
       - name: Clean things to be safe
         run: |
@@ -130,7 +138,7 @@ jobs:
       - name: Add MSBuild to PATH
         uses: microsoft/setup-msbuild@v2.0.0
       
-      - name: Setup .NET 6.0, 7.0, 8.0, 9.0
+      - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10
         uses: actions/setup-dotnet@v4.3.0
         with:
           dotnet-version: |
@@ -138,6 +146,7 @@ jobs:
             7.0.x
             8.0.x
             9.0.x
+            10.0.x
       
       - name: Publish NetSparkleUpdater.SparkleUpdater on version change
         uses: nitz/publish-nuget@60fd3adf9d9eecc3bbf8a98738734d3061347172

@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>NetSparkleUpdater.AppCastGenerator</RootNamespace>
     <AssemblyName>NetSparkleUpdater.Tools.AppCastGenerator</AssemblyName>
-    <TargetFrameworks>net9.0;net8.0;net7.0;net6.0</TargetFrameworks>
+    <TargetFrameworks>net10.0;net9.0;net8.0;net7.0;net6.0</TargetFrameworks>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
@@ -48,10 +48,10 @@
   </PropertyGroup>
   <PropertyGroup>
     <PostBuildEvent />
-    <AssemblyVersion>2.8.6.0</AssemblyVersion>
-    <FileVersion>2.8.6.0</FileVersion>
+    <AssemblyVersion>2.9.0.0</AssemblyVersion>
+    <FileVersion>2.9.0.0</FileVersion>
     <PackageId>NetSparkleUpdater.Tools.AppCastGenerator</PackageId>
-    <Version>2.8.6</Version>
+    <Version>2.9.0</Version>
     <Authors>Deadpikle</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
