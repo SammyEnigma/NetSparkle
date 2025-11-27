@@ -51,7 +51,7 @@
     <AssemblyVersion>2.9.0.0</AssemblyVersion>
     <FileVersion>2.9.0.0</FileVersion>
     <PackageId>NetSparkleUpdater.Tools.AppCastGenerator</PackageId>
-    <Version>2.9.0</Version>
+    <Version>2.9.0-preview20251127001</Version>
     <Authors>Deadpikle</Authors>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
