@@ -700,6 +700,8 @@ NetSparkle is available under the [MIT License](LICENSE).
 
 Contributions are ALWAYS welcome! If you see a new feature you'd like to add, please open an issue to talk about it first, then open a PR for that implementation. If there's a bug you find, please open a PR with the fix or file an issue! Thank you!! :) You can also join us in our [Gitter chat room](https://gitter.im/NetSparkleUpdater/NetSparkle)!
 
+Please note that AI-generated code **will not be accepted under any circumstances**. Thank you.
+
 ### Areas where we could use help/contributions
 
 * Unit tests for all parts of the project, including UI unit tests, full download tests, etc.
