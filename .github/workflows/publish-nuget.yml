@@ -36,7 +36,7 @@ jobs:
             ./dotnet-install.sh --architecture x64 --channel 10.0
          fi
         shell: bash
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6.0.1
       # - uses: nuget/setup-nuget@v2
       #   with:
       #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
@@ -47,7 +47,7 @@ jobs:
         if: matrix.os == 'windows-latest'
       
       - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10 for tests
-        uses: actions/setup-dotnet@v4.3.0
+        uses: actions/setup-dotnet@v5.0.1
         with:
           dotnet-version: |
             6.0.x
@@ -95,7 +95,7 @@ jobs:
     runs-on: windows-latest
     needs: test
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6.0.1
       # - uses: nuget/setup-nuget@v2
       #   with:
       #       nuget-api-key: ${{secrets.NUGET_API_KEY}}
@@ -105,7 +105,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2.0.0
       
       - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10.0
-        uses: actions/setup-dotnet@v4.3.0
+        uses: actions/setup-dotnet@v5.0.1
         with:
           dotnet-version: |
             6.0.x
@@ -152,7 +152,7 @@ jobs:
     needs: build
     if: github.ref == 'refs/heads/develop' || github.ref == 'refs/heads/avalonia-preview' || github.ref == 'refs/heads/versions/2.x'
     steps:
-      - uses: actions/checkout@v4.2.2
+      - uses: actions/checkout@v6.0.1
       - uses: nuget/setup-nuget@v2
         with:
             nuget-api-key: ${{secrets.NUGET_API_KEY}}
@@ -162,7 +162,7 @@ jobs:
         uses: microsoft/setup-msbuild@v2.0.0
       
       - name: Setup .NET 6.0, 7.0, 8.0, 9.0, 10
-        uses: actions/setup-dotnet@v4.3.0
+        uses: actions/setup-dotnet@v5.0.1
         with:
           dotnet-version: |
             6.0.x
