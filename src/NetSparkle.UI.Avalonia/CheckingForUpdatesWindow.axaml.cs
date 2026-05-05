@@ -35,7 +35,7 @@ namespace NetSparkleUpdater.UI.Avalonia
         {
             this.InitializeComponent();
 #if DEBUG
-            this.AttachDevTools();
+            Application.Current?.AttachDeveloperTools();
 #endif
             Closing += CheckingForUpdatesWindow_Closing;
             var imageControl = this.FindControl<Image>("AppIcon");
