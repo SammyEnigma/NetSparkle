@@ -11,7 +11,7 @@
     <TestProjectType>UnitTest</TestProjectType>
     <AssemblyTitle>NetSparkleUnitTests</AssemblyTitle>
     <Product>NetSparkleUnitTests</Product>
-    <Copyright>Copyright © 2025</Copyright>
+    <Copyright>Copyright © 2026</Copyright>
 	  <IsTestProject>true</IsTestProject>
     <OutputPath>..\..\bin\NetSparkle.Tests\$(Configuration)\</OutputPath>
   </PropertyGroup>
