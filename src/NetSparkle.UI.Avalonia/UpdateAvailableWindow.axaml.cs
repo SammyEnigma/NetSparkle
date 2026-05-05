@@ -56,7 +56,7 @@ namespace NetSparkleUpdater.UI.Avalonia
                 imageControl.Source = iconBitmap;
             }
 #if DEBUG
-            this.AttachDevTools();
+            Application.Current?.AttachDeveloperTools();
 #endif
             DataContext = _dataContext = viewModel;
             _dataContext.ReleaseNotesDisplayer = this;
